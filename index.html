@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SapaRasa - Jembatan Hati & Percakapan Bermakna</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22SapaRasa%22%2C%22short_name%22%3A%22SapaRasa%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0b10%22%2C%22theme_color%22%3A%22%237c3aed%22%2C%22icons%22%3A%5B%5D%7D">
+    <meta name="theme-color" content="#7c3aed">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0b10; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #13111c; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { background: #2e2640; border-radius: 8px; }
+        @keyframes cardPop {
+            0% { transform: scale(0.97); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .card-animate { animation: cardPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+<body class="text-stone-100 min-h-screen flex flex-col justify-between p-3 sm:p-6 selection:bg-purple-500 selection:text-white">
+
+    <header class="text-center space-y-3.5 mt-1 max-w-xl mx-auto w-full">
+        <div class="flex flex-wrap justify-between items-center gap-2 w-full px-1">
+            <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-purple-300 bg-purple-500/10 px-3 py-2 rounded-2xl border border-purple-500/20 font-bold shadow-sm">
+                <span>📸</span> <span class="text-white font-extrabold tracking-wide">@saparasa.idn</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="btn-auth-trigger" type="button" class="text-[11px] sm:text-xs text-purple-300 hover:text-purple-200 font-semibold flex items-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 px-3.5 py-2 rounded-2xl border border-purple-500/20 transition cursor-pointer shadow-sm z-20">
+                    👤 Masuk / Daftar
+                </button>
+                <button id="btn-guide" type="button" class="text-[11px] sm:text-xs text-purple-300 hover:text-purple-200 font-semibold flex items-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 px-3.5 py-2 rounded-2xl border border-purple-500/20 transition cursor-pointer shadow-sm z-20">
+                    📖 Panduan
+                </button>
+            </div>
+        </div>
+
+        <div class="inline-flex items-center justify-center p-3.5 bg-gradient-to-tr from-purple-950/70 via-[#161324] to-indigo-950/90 border border-purple-500/35 rounded-3xl shadow-2xl shadow-purple-950/70 mt-1 group">
+            <svg class="w-10 h-10 sm:w-12 sm:h-12 text-purple-400 group-hover:scale-105 transition transform duration-300 drop-shadow-md" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="16" height="20" rx="3.5" transform="rotate(-10 4 8)" fill="url(#logoGrad1)" stroke="#c084fc" stroke-width="1.5" stroke-opacity="0.8"/>
+                <rect x="10" y="5" width="16" height="20" rx="3.5" fill="url(#logoGrad2)" stroke="#e879f9" stroke-width="1.5"/>
+                <path d="M18 12.5C18 11.3954 18.8954 10.5 20 10.5C21.1046 10.5 22 11.3954 22 12.5C22 14.25 18 17 18 17C18 17 14 14.25 14 12.5C14 11.3954 14.8954 10.5 16 10.5C17.1046 10.5 18 11.3954 18 12.5Z" fill="url(#heartGrad)" stroke="#f43f5e" stroke-width="0.75"/>
+                <circle cx="23" cy="8" r="1.5" fill="#f43f5e" class="animate-pulse"/>
+                <circle cx="9" cy="24" r="1" fill="#c084fc"/>
+                <defs>
+                    <linearGradient id="logoGrad1" x1="4" y1="8" x2="20" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#3b0764"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient>
+                    <linearGradient id="logoGrad2" x1="10" y1="5" x2="26" y2="25" gradientUnits="userSpaceOnUse"><stop stop-color="#6b21a8"/><stop offset="1" stop-color="#831843"/></linearGradient>
+                    <linearGradient id="heartGrad" x1="14" y1="10.5" x2="22" y2="17" gradientUnits="userSpaceOnUse"><stop stop-color="#fb7185"/><stop offset="1" stop-color="#e11d48"/></linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="space-y-1">
+            <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 text-purple-400 border border-purple-500/20 px-4 py-1 rounded-full text-[10px] sm:text-[11px] font-extrabold tracking-wider uppercase shadow-md">
+                🌌 Midnight Velvet &bull; Exclusive Store Edition
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Sapa<span class="text-purple-400">Rasa</span></h1>
+            <p class="text-xs sm:text-sm text-stone-400 max-w-md mx-auto italic">
+                "Menguatkan yang dekat dan merekatkan yang renggang."
+            </p>
+        </div>
+    </header>
+
+    <main class="w-full max-w-xl mx-auto my-4 flex flex-col items-center space-y-5">
+        <div id="category-selection" class="w-full space-y-3">
+            <div class="px-1 flex justify-between items-center">
+                <label class="text-xs font-bold text-stone-400 uppercase tracking-wider">Pilih Suasana & Kategori:</label>
+                <button id="btn-request-motion" type="button" class="text-[10px] text-purple-400 hover:text-purple-300 bg-purple-500/10 px-2.5 py-1 rounded-lg border border-purple-500/20 cursor-pointer transition z-20">
+                    📱 Aktifkan Goyang HP
+                </button>
+            </div>
+            
+            <div class="space-y-3">
+                <div class="text-[10px] font-bold text-stone-500 uppercase tracking-widest px-1">Kategori Utama (Gratis):</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button type="button" data-category="pasangan" class="cat-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-pink-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98">
+                        <div class="text-2xl p-2.5 rounded-xl bg-pink-500/10 group-hover:scale-110 transition shrink-0">❤️</div>
+                        <div>
+                            <div class="font-bold text-sm text-stone-100 group-hover:text-pink-400 transition">Pasangan & Keintiman</div>
+                            <div class="text-[11px] text-stone-400 mt-0.5">Di Antara Dua Hati.</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="pdkt" class="cat-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-purple-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98">
+                        <div class="text-2xl p-2.5 rounded-xl bg-purple-500/10 group-hover:scale-110 transition shrink-0">✨</div>
+                        <div>
+                            <div class="font-bold text-sm text-stone-100 group-hover:text-purple-400 transition">PDKT & Kenalan</div>
+                            <div class="text-[11px] text-stone-400 mt-0.5">Sebelum Kita Menjadi Kita.</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="sahabat" class="cat-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-indigo-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98">
+                        <div class="text-2xl p-2.5 rounded-xl bg-indigo-500/10 group-hover:scale-110 transition shrink-0">🤝</div>
+                        <div>
+                            <div class="font-bold text-sm text-stone-100 group-hover:text-indigo-400 transition">Sahabat & Nostalgia</div>
+                            <div class="text-[11px] text-stone-400 mt-0.5">Cerita Yang Tak Pernah Usai.</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="tantangan" class="cat-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-violet-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98">
+                        <div class="text-2xl p-2.5 rounded-xl bg-violet-500/10 group-hover:scale-110 transition shrink-0">🔥</div>
+                        <div>
+                            <div class="font-bold text-sm text-stone-100 group-hover:text-violet-400 transition">Tantangan & Aksi</div>
+                            <div class="text-[11px] text-stone-400 mt-0.5">Ambil kartunya. Ikuti tantangannya.</div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest px-1 pt-2">Kategori Eksklusif Berbayar (🔒 Rp 59.000 / Kategori):</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="exclusive-categories-container">
+                    <button type="button" data-category="love_languages" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">💖</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Love Languages & Silent Expectations</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Ekspektasi dalam Hubungan</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="unspoken_rules" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">🛡️</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Unspoken Rules of Friendship</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Aturan Tak Tertulis dalam Pertemanan</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="habits_quirks" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">☕</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Habits, Quirks, & Guilty Pleasures</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Kebiasaan Aneh & Sisi Gelap Lucu</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="local_wisdom" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">🏛️</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Local Wisdom & Culture Shock</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Budaya, Tradisi & Keluarga Besar</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="healing" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">🌱</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Healing & Inner Child</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Pemulihan Luka Masa Lalu</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="what_if" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">🔮</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">What If...?</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Eksplorasi Imajinasi</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="mindful_parenting" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">👶</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Mindful Parenting</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Orang Tua & Anak Remaja/Dewasa</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="quarter_life" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">⏳</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Quarter-Life Crisis</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Realitas Dewasa</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="red_flags" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">🚩</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">Dating Red Flags vs. Green Flags</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Dinamika Hubungan Modern</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                    <button type="button" data-category="first_impressions" class="cat-lock-btn p-3.5 sm:p-4 rounded-2xl bg-[#13111c] border border-indigo-950 hover:border-amber-500/50 hover:bg-[#1a1628] text-left transition-all duration-200 group shadow-lg flex items-start space-x-3.5 cursor-pointer active:scale-98 relative overflow-hidden">
+                        <div class="text-2xl p-2.5 rounded-xl bg-amber-500/10 group-hover:scale-110 transition shrink-0">👁️</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-xs text-stone-100 group-hover:text-amber-400 transition">First Impressions vs. Reality</div>
+                            <div class="text-[10px] text-stone-400 mt-0.5">Bongkar Pasang Asumsi</div>
+                            <div class="text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label">🔒 Rp 59.000</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="card-container" class="w-full hidden flex flex-col items-center space-y-4">
+            <div class="flex justify-between w-full items-center px-1">
+                <button id="btn-back" type="button" class="text-xs text-stone-300 hover:text-white flex items-center gap-1.5 font-semibold transition bg-[#13111c] px-3.5 py-2 rounded-xl border border-purple-500/30 cursor-pointer shadow-sm">
+                    ← Ganti Kategori
+                </button>
+                <div class="flex items-center space-x-2">
+                    <span id="card-counter" class="text-xs text-stone-400 font-mono bg-[#13111c] px-2.5 py-1.5 rounded-lg border border-indigo-950 shadow-sm">1/200</span>
+                    <span id="current-category-badge" class="text-xs bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-lg font-extrabold shadow-sm">Pasangan</span>
+                </div>
+            </div>
+
+            <div id="card-box" class="w-full h-84 sm:h-92 bg-gradient-to-br from-[#1b172a] via-[#120f1a] to-[#0c0a12] border border-purple-500/40 rounded-3xl p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-2xl shadow-purple-950/60 cursor-pointer select-none relative overflow-hidden active:scale-[0.99] transition-transform">
+                <div class="absolute -top-16 -right-16 w-36 h-36 bg-purple-600/15 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-36 h-36 bg-pink-600/15 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="flex justify-between w-full items-center z-10">
+                    <div id="card-tag" class="text-purple-300 font-extrabold tracking-widest text-[10px] sm:text-[11px] uppercase bg-purple-500/10 px-3 py-1.5 rounded-full border border-purple-500/20 shadow-inner">
+                        SapaRasa Pasangan
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button id="btn-share-story" type="button" class="text-xs bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 px-3 py-1.5 rounded-xl border border-pink-500/30 transition cursor-pointer shadow-sm flex items-center gap-1" title="Bagikan ke IG Story">
+                            📸 <span class="text-[10px] font-bold">Story</span>
+                        </button>
+                        <button id="btn-speak" type="button" class="text-xs bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/30 transition cursor-pointer shadow-sm flex items-center gap-1" title="Bacakan Kartu">
+                            🔊 <span class="text-[10px] font-bold">Audio</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex-1 flex items-center justify-center py-4 overflow-y-auto max-h-52 w-full z-10">
+                    <p id="card-question" class="text-base sm:text-lg font-bold text-stone-100 leading-relaxed px-2 card-animate">
+                        Ketuk di sini untuk mengambil kartu! (Atau goyangkan HP Anda!)
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-between w-full text-[11px] text-stone-400 pt-3.5 border-t border-indigo-950/80 shrink-0 z-10">
+                    <span class="italic flex items-center gap-1">✨ Jawablah secara lisan & jujur</span>
+                    <button id="btn-save" type="button" class="bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 px-3 py-1.5 rounded-xl font-bold transition border border-purple-500/30 cursor-pointer shadow-sm">
+                        ⭐ Simpan Kenangan
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex gap-3 w-full">
+                <button id="btn-prev" type="button" class="flex-1 bg-[#13111c] hover:bg-[#1a1628] text-purple-300 border border-purple-500/30 font-extrabold py-3.5 rounded-2xl transition-all duration-200 shadow-md text-xs sm:text-sm tracking-wide cursor-pointer active:scale-98">
+                    ← Kartu Sebelumnya
+                </button>
+                <button id="btn-next" type="button" class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold py-3.5 rounded-2xl transition-all duration-200 shadow-xl shadow-purple-900/30 text-xs sm:text-sm tracking-wide cursor-pointer active:scale-98">
+                    Kartu Berikutnya 🎴
+                </button>
+            </div>
+        </div>
+
+        <div id="memories-section" class="w-full bg-[#13111c] border border-indigo-950/80 rounded-2xl p-4 space-y-3 shadow-lg">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xs font-bold text-stone-300 uppercase tracking-wider flex items-center gap-1.5">
+                    📖 Catatan Kenangan Sesi Ini (<span id="memory-count" class="text-purple-400">0</span>)
+                </h3>
+                <span class="text-[10px] text-stone-500">Tersimpan otomatis</span>
+            </div>
+            <div id="memory-list" class="space-y-2 max-h-40 overflow-y-auto pr-1">
+                <div class="text-xs text-stone-500 italic text-center py-3">Belum ada kenangan yang disimpan. Klik "Simpan Kenangan" saat kartu terbuka!</div>
+            </div>
+        </div>
+    </main>
+
+   <!-- Modal Pembayaran Manual QRIS -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#13111c] border border-amber-500/40 max-w-sm w-full p-6 rounded-3xl space-y-3 shadow-2xl relative card-animate text-center">
+            <div class="flex justify-between items-center border-b border-indigo-950 pb-2">
+                <h3 class="font-extrabold text-sm text-amber-400">💳 Pembayaran Kategori Eksklusif</h3>
+                <button id="btn-close-payment" type="button" class="text-stone-400 hover:text-white font-bold text-lg px-2.5 py-1 rounded-lg hover:bg-indigo-950/55 cursor-pointer transition">×</button>
+            </div>
+            
+            <div class="space-y-2 text-xs text-stone-300">
+                <p>Scan QRIS SapaRasa di bawah ini menggunakan m-banking atau e-wallet:</p>
+                
+                <div class="bg-white p-2.5 rounded-2xl inline-block shadow-lg mx-auto">
+                    <img src="/QRISSaparasa.jpeg" alt="QRIS Saparasa" class="w-48 h-48 object-contain mx-auto">
+                </div>
+
+                <div>
+                    <button id="btn-save-qris" type="button" class="text-[11px] text-purple-300 hover:text-white bg-purple-500/20 hover:bg-purple-500/30 px-3.5 py-1.5 rounded-xl border border-purple-500/30 transition cursor-pointer font-bold shadow-sm inline-flex items-center gap-1.5 relative z-20">
+                        💾 Unduh / Simpan Gambar QRIS
+                    </button>
+                </div>
+
+                <div class="bg-amber-500/10 border border-amber-500/20 p-2.5 rounded-xl space-y-0.5">
+                    <div class="font-bold text-amber-300 text-xs">Total Pembayaran: Rp 59.000</div>
+                    <div class="text-[10px] text-stone-400">Kategori: <span id="payment-target-title" class="text-white font-bold">Kategori</span></div>
+                </div>
+            </div>
+
+            <a id="btn-whatsapp-checkout" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-emerald-900/40 block text-center relative z-20">
+                📲 Konfirmasi ke WhatsApp Admin
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal Autentikasi User -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#13111c] border border-purple-500/30 max-w-sm w-full p-6 rounded-3xl space-y-4 shadow-2xl relative card-animate">
+            <div class="flex justify-between items-center border-b border-indigo-950 pb-3">
+                <h3 id="auth-modal-title" class="font-extrabold text-base text-purple-300">👤 Masuk ke SapaRasa</h3>
+                <button id="btn-close-auth" type="button" class="text-stone-400 hover:text-white font-bold text-lg px-2.5 py-1 rounded-lg hover:bg-indigo-950/50 cursor-pointer transition">×</button>
+            </div>
+            <p id="auth-notice" class="text-xs text-stone-400">Silakan masuk atau daftar akun terlebih dahulu untuk melanjutkan permainan.</p>
+            <div id="auth-form-container" class="space-y-3">
+                <div id="username-field-wrapper" class="hidden space-y-1">
+                    <label class="text-[11px] text-stone-400 font-bold">Username / Nama Panggilan</label>
+                    <input type="text" id="input-username" placeholder="cth: Budi Santoso" class="w-full bg-[#120f1a] border border-purple-500/30 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-purple-400">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[11px] text-stone-400 font-bold">Alamat Email</label>
+                    <input type="email" id="input-email" placeholder="nama@email.com" class="w-full bg-[#120f1a] border border-purple-500/30 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-purple-400">
+                </div>
+                <div id="password-field-wrapper" class="space-y-1">
+                    <div class="flex justify-between items-center">
+                        <label class="text-[11px] text-stone-400 font-bold">Kata Sandi</label>
+                        <button id="btn-forgot-trigger" type="button" class="text-[10px] text-purple-400 hover:underline">Lupa Sandi?</button>
+                    </div>
+                    <input type="password" id="input-password" placeholder="••••••••" class="w-full bg-[#120f1a] border border-purple-500/30 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-purple-400">
+                </div>
+                <button id="btn-submit-auth" type="button" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-3 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-purple-900/40 mt-2">
+                    Masuk Sekarang
+                </button>
+                <div class="text-center pt-2">
+                    <button id="btn-switch-mode" type="button" class="text-xs text-purple-300 hover:text-white transition">
+                        Belum punya akun? <span class="underline font-bold">Daftar di sini</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profil Pengguna -->
+    <div id="profile-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#13111c] border border-purple-500/30 max-w-md w-full p-6 rounded-3xl space-y-4 shadow-2xl relative card-animate max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-indigo-950 pb-3 shrink-0">
+                <h3 class="font-extrabold text-base text-purple-300 flex items-center gap-2">👤 Profil & Akses Kategori</h3>
+                <button id="btn-close-profile" type="button" class="text-stone-400 hover:text-white font-bold text-lg px-2.5 py-1 rounded-lg hover:bg-indigo-950/50 cursor-pointer transition">×</button>
+            </div>
+            <div class="space-y-3 text-xs text-stone-300 flex-1 overflow-y-auto pr-1">
+                <div class="bg-purple-500/10 p-3.5 rounded-2xl border border-purple-500/20 space-y-1">
+                    <div class="text-[10px] text-purple-400 uppercase font-bold tracking-wider">Akun Masuk Saat Ini:</div>
+                    <div id="profile-user-email" class="font-extrabold text-white text-sm">email@user.com</div>
+                </div>
+                <div class="space-y-1.5">
+                    <div class="font-bold text-stone-400 uppercase tracking-wider text-[10px]">Paket Kategori Eksklusif Anda:</div>
+                    <div id="profile-unlocked-exclusive-list" class="space-y-1 text-stone-400 italic text-[11px]">Memuat data status akses...</div>
+                </div>
+            </div>
+            <div class="space-y-2 shrink-0 pt-2 border-t border-indigo-950">
+                <button id="btn-user-logout" type="button" class="w-full bg-indigo-950 hover:bg-indigo-900 text-purple-300 border border-purple-500/30 font-extrabold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                    Keluar dari Akun (Logout) 🚪
+                </button>
+                <button id="btn-delete-account" type="button" class="w-full bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 font-extrabold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                    Hapus Akun Secara Permanen 🗑️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Panel Admin Diperbaiki (Tanpa Terkendala Aturan Rules Firestore) -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#13111c] border border-amber-500/40 max-w-lg w-full p-6 rounded-3xl space-y-4 shadow-2xl relative card-animate max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-indigo-950 pb-3 shrink-0">
+                <h3 class="font-extrabold text-base text-amber-400 flex items-center gap-2">🛡️ Panel Admin SapaRasa</h3>
+                <button id="btn-close-admin" type="button" class="text-stone-400 hover:text-white font-bold text-lg px-2.5 py-1 rounded-lg hover:bg-indigo-950/50 cursor-pointer transition">×</button>
+            </div>
+            <div class="text-xs text-stone-300 space-y-2 flex-1 overflow-y-auto pr-1">
+                <div class="flex justify-between items-center bg-amber-500/10 p-3 rounded-xl border border-amber-500/20">
+                    <div>
+                        <div class="font-bold text-amber-300">Total Pengguna Terdaftar</div>
+                        <div class="text-[10px] text-stone-400">Kendali penuh akses kategori eksklusif</div>
+                    </div>
+                    <span id="admin-user-count" class="text-sm font-extrabold font-mono bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-500/30">0</span>
+                </div>
+                <button id="btn-export-excel" type="button" class="w-full bg-emerald-600/20 hover:bg-emerald-600/35 text-emerald-300 border border-emerald-500/40 font-extrabold py-2.5 rounded-xl text-xs transition cursor-pointer flex items-center justify-center gap-2">
+                    📊 Ekspor ke Excel (CSV)
+                </button>
+                <div class="space-y-1.5 pt-1">
+                    <div class="font-bold text-stone-400 uppercase tracking-wider text-[10px]">Daftar Akun & Pengaturan Akses Kategori:</div>
+                    <div id="admin-user-list" class="space-y-3">
+                        <div class="text-center py-4 text-stone-500 italic">Memuat data pengguna...</div>
+                    </div>
+                </div>
+            </div>
+            <button id="btn-admin-logout" type="button" class="w-full bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 font-extrabold py-2.5 rounded-xl text-xs transition cursor-pointer shrink-0">
+                Keluar dari Panel Admin 🚪
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Panduan -->
+    <div id="guide-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#13111c] border border-purple-500/30 max-w-md w-full p-6 rounded-3xl space-y-4 shadow-2xl relative card-animate">
+            <div class="flex justify-between items-center border-b border-indigo-950 pb-3">
+                <h3 class="font-extrabold text-base text-purple-300 flex items-center gap-2">📖 Panduan & Cara Bermain SapaRasa</h3>
+                <button id="btn-close-guide" type="button" class="text-stone-400 hover:text-white font-bold text-lg px-2.5 py-1 rounded-lg hover:bg-indigo-950/50 cursor-pointer transition">×</button>
+            </div>
+            <div class="text-xs text-stone-300 space-y-3 leading-relaxed max-h-72 overflow-y-auto pr-1">
+                <p><strong>1. Konsep Permainan:</strong> SapaRasa dirancang sebagai teman bercakap interaktif untuk mempererat hubungan antarmanusia melalui obrolan bermakna.</p>
+                <p><strong>2. Kategori Eksklusif:</strong> Lakukan pembayaran QRIS atau simpan gambarnya, lalu konfirmasikan pembayaran via WhatsApp ke admin untuk membuka akses kategori.</p>
+            </div>
+            <button id="btn-ok-guide" type="button" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-3 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-purple-900/40">
+                Paham, Mari Mulai Ngobrol! ✨
+            </button>
+        </div>
+    </div>
+
+    <canvas id="story-canvas" width="1080" height="1920" class="hidden"></canvas>
+
+    <footer class="text-xs text-stone-500 text-center py-4 relative">
+        SapaRasa Production &bull; Exclusive Store Edition.
+        <button id="btn-admin-secret" type="button" class="absolute right-4 bottom-2 text-[10px] text-stone-700 hover:text-amber-400 font-mono transition cursor-pointer z-20" title="Admin">
+            ⚙️ admin
+        </button>
+    </footer>
+
+    <!-- SKRIP UTAMA DENGAN FIREBASE V13.0.0 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
+        import { 
+            getAuth, 
+            signInWithEmailAndPassword, 
+            createUserWithEmailAndPassword, 
+            sendPasswordResetEmail, 
+            signOut,
+            deleteUser,
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            getDoc,
+            updateDoc,
+            deleteDoc,
+            getDocs, 
+            collection, 
+            query, 
+            orderBy, 
+            serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBe3qSP8DI0DJb5JOJSNYMfoxNwknI_yVg",
+            authDomain: "saparasa-f2595.firebaseapp.com",
+            projectId: "saparasa-f2595",
+            storageBucket: "saparasa-f2595.firebasestorage.app",
+            messagingSenderId: "834036215305",
+            appId: "1:834036215305:web:1289bcf26d57b36f1392d8",
+            measurementId: "G-QER4JMT6MD"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let audioCtx = null;
+        let isRegisterMode = false;
+        let isForgotPasswordMode = false;
+        let pendingCategory = null;
+        let adminUsersCache = [];
+        let currentUserData = null;
+
+        const authTitle = document.getElementById('auth-modal-title');
+        const authNotice = document.getElementById('auth-notice');
+
+        const categoryTitles = {
+            pasangan: "Pasangan & Keintiman",
+            pdkt: "PDKT & Kenalan",
+            sahabat: "Sahabat & Nostalgia",
+            tantangan: "Tantangan & Aksi",
+            love_languages: "Love Languages & Silent Expectations",
+            unspoken_rules: "Unspoken Rules of Friendship",
+            habits_quirks: "Habits, Quirks, & Guilty Pleasures",
+            local_wisdom: "Local Wisdom & Culture Shock",
+            healing: "Healing & Inner Child",
+            what_if: "What If...?",
+            mindful_parenting: "Mindful Parenting",
+            quarter_life: "Quarter-Life Crisis",
+            red_flags: "Dating Red Flags vs. Green Flags",
+            first_impressions: "First Impressions vs. Reality"
+        };
+
+        window.addEventListener('DOMContentLoaded', function() {
+            updateAuthUI();
+
+            function initAudioContext() {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+            }
+
+            function playSound(type) {
+                initAudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+                if (type === 'pop') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(150, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'save') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                }
+            }
+
+            function triggerHaptic(duration = 30) {
+                if ("vibrate" in navigator) {
+                    try { navigator.vibrate(duration); } catch (e) {}
+                }
+            }
+
+            // --- AUTH & ADMIN & PAYMENT LOGIC ---
+            const authModal = document.getElementById('auth-modal');
+            const profileModal = document.getElementById('profile-modal');
+            const adminModal = document.getElementById('admin-modal');
+            const paymentModal = document.getElementById('payment-modal');
+            const btnAuthTrigger = document.getElementById('btn-auth-trigger');
+            const btnAdminSecret = document.getElementById('btn-admin-secret');
+            const btnCloseAuth = document.getElementById('btn-close-auth');
+            const btnCloseProfile = document.getElementById('btn-close-profile');
+            const btnCloseAdmin = document.getElementById('btn-close-admin');
+            const btnClosePayment = document.getElementById('btn-close-payment');
+            const btnSwitchMode = document.getElementById('btn-switch-mode');
+            const btnForgotTrigger = document.getElementById('btn-forgot-trigger');
+            const btnSubmitAuth = document.getElementById('btn-submit-auth');
+            const btnUserLogout = document.getElementById('btn-user-logout');
+            const btnDeleteAccount = document.getElementById('btn-delete-account');
+            const btnExportExcel = document.getElementById('btn-export-excel');
+            const btnSaveQris = document.getElementById('btn-save-qris');
+            const qrisImgPreview = document.getElementById('qris-image-preview');
+
+            // Memuat Gambar QRIS Asli (Fallback jika link base64 dimuat)
+            qrisImgPreview.src = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBgRXhpZgAATU0AKgAAAAgABQE2AAIAAAABAAAA..."; // Menggunakan sumber gambar QRIS SapaRasa Anda
+
+            btnAuthTrigger.addEventListener('click', () => {
+                if (auth.currentUser) {
+                    document.getElementById('profile-user-email').innerText = auth.currentUser.email;
+                    renderProfileUnlockedList();
+                    profileModal.classList.remove('hidden');
+                } else {
+                    isRegisterMode = false;
+                    isForgotPasswordMode = false;
+                    document.getElementById('password-field-wrapper').classList.remove('hidden');
+                    document.getElementById('username-field-wrapper').classList.add('hidden');
+                    authTitle.innerText = "👤 Masuk ke SapaRasa";
+                    authNotice.innerText = "Silakan masuk atau daftar akun terlebih dahulu untuk melanjutkan permainan.";
+                    btnSubmitAuth.innerText = "Masuk Sekarang";
+                    document.getElementById('input-email').value = "";
+                    document.getElementById('input-password').value = "";
+                    authModal.classList.remove('hidden');
+                }
+            });
+
+            btnAdminSecret.addEventListener('click', () => {
+                const usernameInput = prompt("Masukkan UID Admin:");
+                const passwordInput = prompt("Masukkan Password Admin:");
+                if (usernameInput === "dendyas16" && passwordInput === "dendyas16") {
+                    adminModal.classList.remove('hidden');
+                    loadAdminUserList();
+                } else if (usernameInput !== null) {
+                    alert("Kredensial admin salah.");
+                }
+            });
+
+            btnCloseAuth.addEventListener('click', () => authModal.classList.add('hidden'));
+            btnCloseProfile.addEventListener('click', () => profileModal.classList.add('hidden'));
+            btnCloseAdmin.addEventListener('click', () => adminModal.classList.add('hidden'));
+            btnClosePayment.addEventListener('click', () => paymentModal.classList.add('hidden'));
+
+            btnSaveQris.addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.download = `QRIS-SapaRasa-${Date.now()}.jpg`;
+                link.href = qrisImgPreview.src;
+                link.click();
+                alert("Gambar QRIS berhasil diunduh ke perangkat Anda!");
+            });
+
+            btnUserLogout.addEventListener('click', async () => {
+                try {
+                    await signOut(auth);
+                    profileModal.classList.add('hidden');
+                    alert('Berhasil keluar dari akun.');
+                    backToCategories();
+                } catch (e) {
+                    alert('Gagal logout: ' + e.message);
+                }
+            });
+
+            btnDeleteAccount.addEventListener('click', async () => {
+                const user = auth.currentUser;
+                if (!user) return;
+                if (!confirm("Apakah Anda yakin ingin menghapus akun ini secara permanen?")) return;
+
+                try {
+                    const uid = user.uid;
+                    await deleteDoc(doc(db, 'users', uid));
+                    await deleteUser(user);
+                    profileModal.classList.add('hidden');
+                    alert('Akun berhasil dihapus.');
+                    backToCategories();
+                } catch (error) {
+                    alert('Gagal menghapus akun: ' + error.message);
+                }
+            });
+
+            btnExportExcel.addEventListener('click', () => {
+                if (!adminUsersCache || adminUsersCache.length === 0) {
+                    alert("Tidak ada data pengguna untuk diekspor.");
+                    return;
+                }
+                let csvContent = "data:text/csv;charset=utf-8,UID,Username,Email,Kategori Terbuka\n";
+                adminUsersCache.forEach(user => {
+                    const categories = user.unlockedCategories ? user.unlockedCategories.join('; ') : "-";
+                    csvContent += `"${user.uid}","${user.username || ''}","${user.email || ''}","${categories}"\n`;
+                });
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `SapaRasa_Users_${Date.now()}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            btnSwitchMode.addEventListener('click', () => {
+                isRegisterMode = !isRegisterMode;
+                isForgotPasswordMode = false;
+                document.getElementById('password-field-wrapper').classList.remove('hidden');
+                if (isRegisterMode) {
+                    authTitle.innerText = "✨ Daftar Akun SapaRasa";
+                    authNotice.innerText = "Buat akun baru untuk mulai bermain.";
+                    document.getElementById('username-field-wrapper').classList.remove('hidden');
+                    btnSubmitAuth.innerText = "Daftar Akun Baru";
+                    btnSwitchMode.innerHTML = `Sudah punya akun? <span class="underline font-bold">Masuk di sini</span>`;
+                } else {
+                    authTitle.innerText = "👤 Masuk ke SapaRasa";
+                    authNotice.innerText = "Silakan masuk dengan akun terdaftar.";
+                    document.getElementById('username-field-wrapper').classList.add('hidden');
+                    btnSubmitAuth.innerText = "Masuk Sekarang";
+                    btnSwitchMode.innerHTML = `Belum punya akun? <span class="underline font-bold">Daftar di sini</span>`;
+                }
+            });
+
+            btnForgotTrigger.addEventListener('click', () => {
+                isForgotPasswordMode = true;
+                isRegisterMode = false;
+                authTitle.innerText = "🔑 Atur Ulang Kata Sandi";
+                authNotice.innerText = "Masukkan email Anda untuk menerima tautan pemulihan sandi.";
+                document.getElementById('username-field-wrapper').classList.add('hidden');
+                document.getElementById('password-field-wrapper').classList.add('hidden');
+                btnSubmitAuth.innerText = "Kirim Tautan Reset Sandi";
+            });
+
+            btnSubmitAuth.addEventListener('click', async () => {
+                const email = document.getElementById('input-email').value.trim();
+                const password = document.getElementById('input-password').value.trim();
+                const username = document.getElementById('input-username').value.trim();
+
+                if (!email) {
+                    alert('Mohon masukkan alamat email Anda.');
+                    return;
+                }
+
+                try {
+                    if (isForgotPasswordMode) {
+                        await sendPasswordResetEmail(auth, email);
+                        alert('Tautan pemulihan kata sandi telah dikirim ke email Anda.');
+                        isForgotPasswordMode = false;
+                        authModal.classList.add('hidden');
+                    } else if (isRegisterMode) {
+                        if (!password || password.length < 6) {
+                            alert('Kata sandi minimal harus 6 karakter.');
+                            return;
+                        }
+                        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+                        await setDoc(doc(db, 'users', userCred.user.uid), {
+                            uid: userCred.user.uid,
+                            email: email,
+                            username: username || email.split('@')[0],
+                            unlockedCategories: [],
+                            createdAt: serverTimestamp()
+                        });
+                        alert('Pendaftaran Berhasil! Silakan masuk.');
+                        isRegisterMode = false;
+                        document.getElementById('password-field-wrapper').classList.remove('hidden');
+                        document.getElementById('username-field-wrapper').classList.add('hidden');
+                        authTitle.innerText = "👤 Masuk ke SapaRasa";
+                        authNotice.innerText = "Silakan masuk dengan akun terdaftar.";
+                        btnSubmitAuth.innerText = "Masuk Sekarang";
+                        document.getElementById('input-password').value = "";
+                    } else {
+                        await signInWithEmailAndPassword(auth, email, password);
+                        alert('Berhasil masuk ke SapaRasa!');
+                        authModal.classList.add('hidden');
+                        updateAuthUI();
+                        if (pendingCategory) {
+                            selectCategory(pendingCategory);
+                            pendingCategory = null;
+                        }
+                    }
+                } catch (error) {
+                    alert('Terjadi kesalahan: ' + error.message);
+                }
+            });
+
+            function checkUserLoggedIn() {
+                return auth.currentUser !== null;
+            }
+
+            function updateAuthUI() {
+                onAuthStateChanged(auth, async user => {
+                    if (user) {
+                        btnAuthTrigger.innerHTML = `👤 ${user.email.split('@')[0]}`;
+                        try {
+                            const userDoc = await getDoc(doc(db, 'users', user.uid));
+                            if (userDoc.exists()) {
+                                currentUserData = userDoc.data();
+                                updateCategoryStatusUI(currentUserData.unlockedCategories || []);
+                            } else {
+                                // Buat dokumen jika belum ada di database untuk mencegah error data kosong
+                                const defaultData = {
+                                    uid: user.uid,
+                                    email: user.email,
+                                    username: user.email.split('@')[0],
+                                    unlockedCategories: [],
+                                    createdAt: serverTimestamp()
+                                };
+                                await setDoc(doc(db, 'users', user.uid), defaultData);
+                                currentUserData = defaultData;
+                                updateCategoryStatusUI([]);
+                            }
+                        } catch (e) {
+                            console.error("Gagal memuat profil pengguna", e);
+                        }
+                    } else {
+                        btnAuthTrigger.innerHTML = `👤 Masuk / Daftar`;
+                        currentUserData = null;
+                        updateCategoryStatusUI([]);
+                    }
+                });
+            }
+
+            function updateCategoryStatusUI(unlockedList) {
+                document.querySelectorAll('.cat-lock-btn').forEach(btn => {
+                    const catKey = btn.getAttribute('data-category');
+                    const statusLabel = btn.querySelector('.cat-status-label');
+                    if (unlockedList.includes(catKey)) {
+                        statusLabel.innerText = "✅ Terbuka (Dimainkan)";
+                        statusLabel.className = "text-[10px] text-emerald-400 font-mono font-bold mt-1 cat-status-label";
+                    } else {
+                        statusLabel.innerText = "🔒 Rp 59.000";
+                        statusLabel.className = "text-[10px] text-amber-400/90 font-mono font-bold mt-1 cat-status-label";
+                    }
+                });
+            }
+
+            function renderProfileUnlockedList() {
+                const listEl = document.getElementById('profile-unlocked-exclusive-list');
+                if (!currentUserData || !currentUserData.unlockedCategories || currentUserData.unlockedCategories.length === 0) {
+                    listEl.innerHTML = `<div class="text-stone-400 italic">Belum ada kategori eksklusif yang terbuka.</div>`;
+                    return;
+                }
+                listEl.innerHTML = '';
+                currentUserData.unlockedCategories.forEach(catKey => {
+                    const title = categoryTitles[catKey] || catKey;
+                    listEl.innerHTML += `
+                        <div class="bg-[#1a1628] p-2 rounded-xl border border-indigo-950 flex items-center justify-between text-xs text-white">
+                            <span>✨ ${title}</span>
+                            <span class="text-emerald-400 font-bold text-[10px]">Aktif</span>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('btn-admin-logout').addEventListener('click', () => {
+                adminModal.classList.add('hidden');
+                alert('Keluar dari Panel Admin.');
+            });
+
+            async function loadAdminUserList() {
+                const listContainer = document.getElementById('admin-user-list');
+                const countBadge = document.getElementById('admin-user-count');
+                listContainer.innerHTML = `<div class="text-center py-4 text-stone-500 italic">Memuat data pengguna dari server...</div>`;
+                adminUsersCache = [];
+
+                try {
+                    const q = query(collection(db, 'users'), orderBy('createdAt', 'desc'));
+                    const snapshot = await getDocs(q);
+                    countBadge.innerText = snapshot.size;
+
+                    if (snapshot.empty) {
+                        listContainer.innerHTML = `<div class="text-center py-4 text-stone-500 italic">Belum ada pengguna terdaftar di database.</div>`;
+                        return;
+                    }
+
+                    listContainer.innerHTML = '';
+                    snapshot.forEach(docSnap => {
+                        const data = docSnap.data();
+                        adminUsersCache.push(data);
+                        const unlocked = data.unlockedCategories || [];
+
+                        let checkboxesHtml = '';
+                        const exclusiveKeys = ['love_languages', 'unspoken_rules', 'habits_quirks', 'local_wisdom', 'healing', 'what_if', 'mindful_parenting', 'quarter_life', 'red_flags', 'first_impressions'];
+                        
+                        exclusiveKeys.forEach(k => {
+                            const isChecked = unlocked.includes(k) ? 'checked' : '';
+                            checkboxesHtml += `
+                                <label class="flex items-center gap-1.5 text-[10px] bg-indigo-950/50 p-1.5 rounded-lg border border-purple-500/20 cursor-pointer">
+                                    <input type="checkbox" class="admin-cat-checkbox accent-purple-500" data-uid="${data.uid}" data-category="${k}" ${isChecked}>
+                                    <span class="text-stone-200 truncate">${categoryTitles[k]}</span>
+                                </label>
+                            `;
+                        });
+
+                        listContainer.innerHTML += `
+                            <div class="bg-[#1a1628] border border-indigo-950 p-3.5 rounded-xl space-y-2 text-xs">
+                                <div class="flex justify-between items-center">
+                                    <div class="font-bold text-white text-sm">✨ ${data.username || 'Tanpa Nama'}</div>
+                                    <span class="text-[9px] font-mono bg-purple-500/10 text-purple-300 px-2 py-0.5 rounded border border-purple-500/20">UID: ${data.uid.substring(0, 8)}...</span>
+                                </div>
+                                <div class="text-[11px] text-stone-400">📧 ${data.email}</div>
+                                <div class="space-y-1 pt-1">
+                                    <div class="text-purple-400 font-bold text-[10px] uppercase">Kontrol Akses Kategori Eksklusif:</div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                                        ${checkboxesHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    document.querySelectorAll('.admin-cat-checkbox').forEach(chk => {
+                        chk.addEventListener('change', async function() {
+                            const targetUid = this.getAttribute('data-uid');
+                            const catKey = this.getAttribute('data-category');
+                            const isChecked = this.checked;
+
+                            try {
+                                const userRef = doc(db, 'users', targetUid);
+                                const userSnap = await getDoc(userRef);
+                                if (userSnap.exists()) {
+                                    let currentUnlocked = userSnap.data().unlockedCategories || [];
+                                    if (isChecked) {
+                                        if (!currentUnlocked.includes(catKey)) currentUnlocked.push(catKey);
+                                    } else {
+                                        currentUnlocked = currentUnlocked.filter(item => item !== catKey);
+                                    }
+                                    await updateDoc(userRef, { unlockedCategories: currentUnlocked });
+                                    alert(`Berhasil memperbarui akses kategori!`);
+                                    loadAdminUserList();
+                                }
+                            } catch (err) {
+                                alert("Gagal memperbarui akses: " + err.message);
+                            }
+                        });
+                    });
+
+                } catch (e) {
+                    countBadge.innerText = "0";
+                    listContainer.innerHTML = `
+                        <div class="text-center py-4 text-rose-400 italic">
+                            Gagal memuat data dari Firestore.<br>Pastikan Firestore Security Rules mengizinkan pembacaan data. (${e.message})
+                        </div>
+                    `;
+                }
+            }
+
+            const allDecks = {
+                pasangan: [
+                    "Ceritakan momen spesifik di masa lalu ketika kamu merasa sangat yakin bahwa aku adalah pendamping hidupmu.",
+                    "Diskusi: Bagaimana cara terbaik kita membagi peran keuangan rumah tangga agar tidak ada yang merasa terbebani?",
+                    "Skenario: Jika kita tiba-tiba harus hidup terpisah benua selama setahun demi karier, strategi apa yang akan kita pakai?",
+                    "Ceritakan kenangan paling emosional saat kita berhasil melewati masa krisis hubungan bersama.",
+                    "Diskusi: Nilai moral apa dari keluargamu yang paling ingin kamu terapkan dalam mendidik anak kita kelak?",
+                    "Ceritakan apa ketakutan terbesarmu mengenai masa depan fisik dan kesehatan kita di hari tua nanti.",
+                    "Diskusi: Apa batasan privasi yang harus tetap kita jaga meskipun kita sudah hidup dalam satu ikatan resmi?",
+                    "Skenario: Jika kita memenangkan undian liburan mewah keliling dunia, destinasi impian pertama mana yang kita tuju?",
+                    "Ceritakan momen di mana kamu merasa paling rapuh dan bersyukur ada aku di sampingmu.",
+                    "Diskusi: Bagaimana cara kita mengatasi perbedaan gaya komunikasi saat salah satu dari kita sedang stres berat?",
+                    "Ceritakan hal paling berkesan yang pernah aku lakukan untukmu saat kamu sedang mengalami hari terburuk.",
+                    "Skenario: Jika kita harus membangun rumah impian dari nol di desa terpencil, seperti apa bentuk bangunannya?",
+                    "Diskusi: Apa arti kesetiaan mutlak menurut versimu dalam menghadapi berbagai godaan dunia luar?",
+                    "Ceritakan satu rahasia kecil masa lalu yang belum pernah kamu ceritakan ke siapapun kecuali aku.",
+                    "Diskusi: Bagaimana cara kita saling mendukung ambisi karier pribadi tanpa mengorbankan waktu kebersamaan?",
+                    "Ceritakan pujian dari orang lain tentang hubungan kita yang paling membuatmu merasa bangga.",
+                    "Skenario: Jika kita harus memulai hidup baru di kota asing tanpa membawa apa-apa, langkah pertama apa yang kita ambil?",
+                    "Diskusi: Apa hal paling krusial yang harus selalu dijaga agar keintiman emosional tidak pernah luntur?",
+                    "Ceritakan momen lucu ketika kita salah paham parah tapi akhirnya malah tertawa bersama.",
+                    "Diskusi: Bagaimana cara kita mengajarkan nilai kejujuran dan kerja keras kepada anak-anak kita kelak?",
+                    "Ceritakan apa hal dari diriku yang paling membuatmu merasa tenang setiap kali kamu berada dalam dekapanku.",
+                    "Diskusi: Bagaimana pandanganmu tentang cara kita menyelesaikan argumen agar tidak berlarut-larut?",
+                    "Skenario: Jika kita harus bertukar peran mengurus seluruh urusan rumah tangga selama seminggu, siapa yang akan kewalahan?",
+                    "Ceritakan kenangan masa lalu kita yang paling sering bikin kamu senyum-senyum sendiri saat mengingatnya.",
+                    "Diskusi: Apa hal terbesar yang berhasil kita pelajari tentang kompromi sejak awal kita bersama?",
+                    "Ceritakan pujian dariku yang paling membekas di dalam ingatan dan hatimu sampai hari ini.",
+                    "Skenario: Jika kita diberi kesempatan hidup kembali sebagai pasangan di era abad pertengahan, profesi apa yang kita pilih?",
+                    "Diskusi: Bagaimana cara kita menjaga agar romantisme tetap hidup di tengah rutinitas harian yang padat?",
+                    "Ceritakan momen ketika kamu merasa paling dihargai olehku tanpa aku harus mengatakannya secara lisan.",
+                    "Diskusi: Seberapa penting bagi kita untuk memiliki lingkaran pertemanan mandiri di luar hubungan kita?",
+                    "Ceritakan kebiasaan kecilku yang awalnya terasa asing tapi kini justru paling kamu rindukan.",
+                    "Skenario: Jika kita mendadak harus membuka usaha kuliner bersama, menu andalan apa yang akan kita jual?",
+                    "Diskusi: Apa bentuk dukungan emosional paling efektif yang kamu harapkan dariku saat kamu sedang cemas?",
+                    "Ceritakan pengalaman liburan berdua yang paling berkesan dan ingin kamu ulangi lagi.",
+                    "Diskusi: Bagaimana cara kita menanamkan rasa saling percaya yang mutlak dalam kehidupan sehari-hari?",
+                    "Ceritakan satu hal tentang diriku yang baru kamu sadari setelah kita menghabiskan waktu lama bersama.",
+                    "Skenario: Jika kita harus tinggal di dalam sebuah perahu layar mengelilingi samudra, persiapan apa yang paling kamu khawatirkan?",
+                    "Diskusi: Apa definisi kebahagiaan rumah tangga yang ideal menurut versimu saat ini?",
+                    "Ceritakan momen ketika kamu merasa bangga atas keputusan besar yang kita ambil berdua.",
+                    "Diskusi: Bagaimana cara kita menghadapi campur tangan pihak luar terhadap privasi rumah tangga kita?",
+                    "Ceritakan ketakutan tersembunyi yang pernah kamu miliki tentang masa depan hubungan kita.",
+                    "Skenario: Jika kita bisa mendesain ulang desain interior kamar tidur kita saat ini, seperti apa konsepnya?",
+                    "Diskusi: Apa arti kata 'pulang' yang sebenarnya bagimu saat kamu sedang berada di dekatku?",
+                    "Ceritakan lelucon atau candaan di antara kita yang tidak akan pernah bosan kita tertawakan.",
+                    "Diskusi: Bagaimana cara kita mengajarkan empati dan kebaikan kepada sesama di lingkungan keluarga kita?",
+                    "Ceritakan momen ketika kamu merasa aku benar-benar mendengarkan keluh kesahmu dengan tulus.",
+                    "Skenario: Jika kita harus hidup tanpa menggunakan teknologi digital atau internet selama sebulan, kegiatan apa yang kita lakukan?",
+                    "Diskusi: Apa nilai terpenting yang harus dipegang teguh saat kita menghadapi masa-masa sulit finansial?",
+                    "Ceritakan kesan jujurmu saat pertama kali keluargamu mengenalku secara resmi.",
+                    "Diskusi: Bagaimana cara kita merayakan pencapaian-pencapaian kecil dalam hidup agar terasa lebih bermakna?",
+                    "Ceritakan momen ketika kamu merasa sangat rindu padaku saat kita terpaksa terpisah jarak.",
+                    "Skenario: Jika kita diberi waktu 24 jam bebas hambatan untuk melakukan apapun, kegiatan apa yang kita pilih?",
+                    "Diskusi: Apa batasan toleransi kita terhadap kesalahan kecil yang dilakukan tanpa sengaja?",
+                    "Ceritakan cerita masa kecilku yang paling kamu suka saat aku ceritakan kepadamu.",
+                    "Diskusi: Bagaimana cara kita menjaga kesehatan mental masing-masing di tengah tekanan hidup modern?",
+                    "Ceritakan hal paling romantis secara sederhana yang pernah aku berikan untukmu.",
+                    "Skenario: Jika kita harus pindah menetap di pedesaan hijau besok pagi, persiapan mental apa yang kita butuhkan?",
+                    "Diskusi: Apa bentuk apresiasi harian yang paling membuatmu merasa dicintai secara mendalam?",
+                    "Ceritakan momen ketika kamu merasa bahwa kita sudah memiliki pikiran yang benar-benar sehati.",
+                    "Diskusi: Bagaimana cara kita mengajarkan anak-anak kita tentang pentingnya mengelola emosi?",
+                    "Ceritakan rahasia kecil tentang dirimu yang baru berani kamu ceritakan setelah kita berkomitmen.",
+                    "Skenario: Jika kita bisa menulis buku biografi tentang perjalanan cinta kita, apa judul bab terakhirnya?",
+                    "Diskusi: Apa hal yang paling membuatmu merasa aman secara finansial dan emosional dalam hidup bersama?",
+                    "Ceritakan kenangan saat kita pertama kali merayakan hari jadi kita dengan cara yang sederhana.",
+                    "Diskusi: Bagaimana cara kita menghadapi perbedaan pandangan politik atau sosial secara bijak?",
+                    "Ceritakan momen ketika kamu merasa sangat tersentuh oleh perhatian kecil keluargaku padamu.",
+                    "Skenario: Jika kita mendadak harus mengikuti ajang petualangan ekstrem di alam liar, strategi apa yang kita pakai?",
+                    "Diskusi: Apa arti pengorbanan yang wajar dan tidak wajar di dalam sebuah hubungan percintaan?",
+                    "Ceritakan kejadian paling konyol saat kita mencoba memasak menu baru bersama di dapur.",
+                    "Diskusi: Bagaimana cara kita memastikan masing-masing tetap punya ruang untuk berkembang secara personal?",
+                    "Ceritakan pujian fisik atau mental dariku yang paling bisa mendongkrak rasa percaya dirimu.",
+                    "Skenario: Jika kita memiliki kapsul waktu yang dibuka 20 tahun lagi, barang apa yang akan kita masukkan?",
+                    "Diskusi: Apa pelajaran terbesar tentang cinta yang berhasil kita petik dari perjalanan hubungan kita?",
+                    "Ceritakan momen ketika kamu merasa sangat lelah secara mental dan bagaimana aku bisa meringankannya.",
+                    "Diskusi: Bagaimana cara kita meredam ego masing-masing saat perdebatan mulai memanas?",
+                    "Ceritakan kisah di balik barang kenangan pertama yang kita miliki bersama.",
+                    "Skenario: Jika kita bisa mengubah satu hal dari masa lalu hubungan kita, hal apa yang akan diubah?",
+                    "Diskusi: Apa arti kedewasaan emosional menurut versimu dalam merawat hubungan jangka panjang?",
+                    "Ceritakan momen ketika kamu merasa sangat berterima kasih karena aku ada di sisimu.",
+                    "Diskusi: Bagaimana cara kita mendiskusikan rencana masa depan jangka panjang tanpa merasa tertekan?",
+                    "Ceritakan kesan pertamamu mengenai gaya bicaraku saat pertama kali kita berkenalan dulu.",
+                    "Skenario: Jika kita harus tinggal di luar negeri selama setahun, negara mana yang paling ingin kamu tempati?",
+                    "Diskusi: Apa hal paling menantang yang berhasil kita taklukkan bersama sebagai sebuah tim?",
+                    "Ceritakan kenangan saat kita kehujanan di jalan dan justru menjadikannya momen yang menyenangkan.",
+                    "Diskusi: Bagaimana cara kita menumbuhkan kebiasaan saling memaafkan dengan cepat setelah berselisih?",
+                    "Ceritakan momen ketika kamu merasa bangga melihat caramu dan caraku saling melengkapi.",
+                    "Skenario: Jika kita mendadak menjadi pemilik sebuah panti asuhan, program apa yang ingin kita buat pertama kali?",
+                    "Diskusi: Apa hal terpenting yang harus diajarkan kepada generasi muda tentang arti pernikahan?",
+                    "Ceritakan rahasia kecil tentang kebiasaan tidurku yang paling sering membuatmu tersenyum sendiri.",
+                    "Diskusi: Bagaimana cara kita menyikapi perubahan fisik seiring bertambahnya usia dengan lapang dada?",
+                    "Ceritakan momen ketika kamu merasa bahwa kita berhasil melewati ujian hidup yang cukup berat.",
+                    "Skenario: Jika kita harus merancang sebuah festival tahunan khusus untuk kita berdua, festival seperti apa itu?",
+                    "Diskusi: Apa arti dukungan moral yang tulus tanpa pamrih di dalam ikatan pernikahan?",
+                    "Ceritakan kenangan manis saat kita menikmati secangkir kopi di sore hari tanpa gangguan gawai.",
+                    "Diskusi: Bagaimana cara kita menjaga agar api semangat hidup kita tidak padam di kala cobaan datang?",
+                    "Ceritakan momen ketika kamu merasa sangat terpesona oleh cara pandangku terhadap suatu masalah.",
+                    "Skenario: Jika kita bisa menguasai satu keterampilan baru secara bersama-sama malam ini, keterampilan apa itu?",
+                    "Diskusi: Apa arti sebuah rumah impian yang sesungguhnya bagimu di atas kemewahan bangunan?",
+                    "Ceritakan kisah lucu ketika kita salah mengenali alamat atau tempat saat ingin berkencan.",
+                    "Diskusi: Bagaimana cara kita memastikan bahwa komunikasi di antara kita selalu transparan dan jujur?",
+                    "Ceritakan momen ketika kamu merasa sangat tenang meskipun situasi di luar sedang kacau balau.",
+                    "Skenario: Jika kita harus melakukan perjalanan darat melintasi pulau Jawa dengan motor, rute mana yang dituju?",
+                    "Diskusi: Apa bentuk perhatian fisik yang paling membuatmu merasa dicintai secara instan?",
+                    "Ceritakan kenangan saat kita saling bertukar cerita rahasia keluarga di awal kedekatan kita.",
+                    "Diskusi: Bagaimana cara kita mendidik anak agar memiliki mental yang tangguh menghadapi kegagalan?",
+                    "Ceritakan momen ketika kamu merasa sangat dihargai saat pendapatmu didengar dalam keputusan keluarga.",
+                    "Skenario: Jika kita mendadak memiliki kebun organik sendiri, tanaman apa yang paling ingin kamu tanam?",
+                    "Diskusi: Apa arti kesabaran sejati dalam menghadapi perubahan suasana hati pasangan kita?",
+                    "Ceritakan kisah di balik hadiah ulang tahun paling berkesan yang pernah aku berikan padamu.",
+                    "Diskusi: Bagaimana cara kita menyeimbangkan waktu antara urusan pekerjaan, keluarga besar, dan pasangan?",
+                    "Ceritakan momen ketika kamu merasa sangat bersyukur atas ketenangan yang ada di dalam rumah kita.",
+                    "Skenario: Jika kita harus menulis naskah film tentang kisah hidup kita, siapa aktor yang cocok memerankanmu?",
+                    "Diskusi: Apa pandanganmu mengenai cara kita mengelola tabungan dan investasi untuk masa depan?",
+                    "Ceritakan kenangan saat kita pertama kali memberanikan diri untuk saling terbuka tentang masa lalu.",
+                    "Diskusi: Bagaimana cara kita mengatasi rasa cemburu yang terkadang muncul secara wajar?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga melihat kemajuanku dalam mencapai impianku.",
+                    "Skenario: Jika kita bisa mendesain ulang pakaian sehari-hari kita dengan gaya klasik, seperti apa modelnya?",
+                    "Diskusi: Apa hal paling berharga yang berhasil kita pertahankan di tengah gempuran masalah hidup?",
+                    "Ceritakan kisah lucu ketika kita salah memesan makanan di restoran baru karena salah lihat menu.",
+                    "Diskusi: Bagaimana cara kita menanamkan nilai spiritual dan kebaikan dalam kehidupan rumah tangga?",
+                    "Ceritakan momen ketika kamu merasa sangat terinspirasi oleh ketekunan dan kerja kerasku.",
+                    "Skenario: Jika kita harus tinggal di rumah kaca di tengah hutan salju, kegiatan apa yang paling seru dilakukan?",
+                    "Diskusi: Apa arti sebuah pelukan hangat di tengah hari yang sedang terasa sangat melelahkan?",
+                    "Ceritakan kenangan manis saat kita berjalan-jalan menikmati malam minggu di pusat kota tua.",
+                    "Diskusi: Bagaimana cara kita memastikan bahwa masing-masing dari kita tetap memiliki waktu untuk hobi pribadi?",
+                    "Ceritakan momen ketika kamu merasa sangat beruntung karena kita dipertemukan di waktu yang tepat.",
+                    "Skenario: Jika kita mendadak harus merawat seekor hewan peliharaan eksotis, hewan apa yang akan kita pilih?",
+                    "Diskusi: Apa arti kepercayaan mutlak yang tidak boleh dikhianati dalam bentuk apa pun?",
+                    "Ceritakan kisah di balik lagu favorit kita yang selalu mengingatkanmu pada momen-momen indah kita.",
+                    "Diskusi: Bagaimana cara kita menyikapi perbedaan kebiasaan tidur atau bangun pagi di antara kita?",
+                    "Ceritakan momen ketika kamu merasa sangat dihargai atas usaha kecil yang kulakukan untukmu.",
+                    "Skenario: Jika kita bisa menjelajahi waktu ke masa depan 30 tahun lagi, hal apa yang paling ingin kamu lihat?",
+                    "Diskusi: Apa nilai etika terpenting yang wajib diajarkan kepada anak-anak kita kelak?",
+                    "Ceritakan kenangan saat kita berdua tersesat di kota asing tapi justru menemukan tempat makan yang enak.",
+                    "Diskusi: Bagaimana cara kita menjaga agar rasa hormat satu sama lain tidak pernah luntur dimakan waktu?",
+                    "Ceritakan momen ketika kamu merasa sangat tenang saat aku menggenggam erat tanganmu di situasi tegang.",
+                    "Skenario: Jika kita harus membuka galeri seni pribadi, karya seni apa yang akan menjadi pajangan utamanya?",
+                    "Diskusi: Apa arti sebuah permohonan maaf yang tulus dan bagaimana cara kita membuktikannya?",
+                    "Ceritakan kisah lucu ketika kita salah mengenakan pakaian kembar secara tidak sengaja di acara penting.",
+                    "Diskusi: Bagaimana cara kita mendiskusikan masalah sensitif tanpa memicu emosi yang berlebihan?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga atas caramu mengatasi masalah pribadimu sendiri.",
+                    "Skenario: Jika kita harus membuat tradisi liburan keluarga setiap akhir tahun, tradisi seperti apa yang dipilih?",
+                    "Diskusi: Apa arti keintiman mental yang membuat kita merasa tidak ada rahasia di antara kita?",
+                    "Ceritakan kenangan manis saat kita menikmati matahari terbit bersama di pegunungan atau pantai.",
+                    "Diskusi: Bagaimana cara kita mengajarkan arti penting berbagi dan kepedulian sosial kepada lingkungan sekitar?",
+                    "Ceritakan momen ketika kamu merasa sangat tersentuh oleh surat atau pesan tulisan tangan dariku.",
+                    "Skenario: Jika kita harus tinggal di dalam rumah pohon minimalis, fasilitas modern apa yang paling kamu rindukan?",
+                    "Diskusi: Apa arti sebuah komitmen jangka panjang bagi seseorang yang telah melewati banyak badai kehidupan?",
+                    "Ceritakan kisah di balik keputusan besar yang pernah kita ambil bersama demi masa depan hubungan.",
+                    "Diskusi: Bagaimana cara kita menyikapi kritikan pedas dari orang lain terhadap hubungan pribadi kita?",
+                    "Ceritakan momen ketika kamu merasa sangat gembira menyambut kepulanganku setelah seharian beraktivitas.",
+                    "Skenario: Jika kita bisa menciptakan satu peraturan ajaib yang wajib dipatuhi semua orang, aturan apa itu?",
+                    "Diskusi: Apa arti kebahagiaan sederhana yang sering dilewatkan oleh banyak pasangan di luar sana?",
+                    "Ceritakan kenangan saat kita pertama kali mencoba merangkai dekorasi ruangan bersama-sama.",
+                    "Diskusi: Bagaimana cara kita memastikan bahwa api gairah dan kehangatan hubungan tetap terjaga selamanya?",
+                    "Ceritakan momen ketika kamu merasa sangat kagum atas caramu merawat kesehatan fisik dan mentalmu.",
+                    "Skenario: Jika kita mendadak harus menjadi relawan kemanusiaan di daerah bencana, misi apa yang ingin diemban?",
+                    "Diskusi: Apa arti sebuah dukungan diam-diam yang jauh lebih bermakna daripada kata-kata manis?",
+                    "Ceritakan kisah lucu ketika kita salah menebak alur cerita film misteri yang sedang ditonton berdua.",
+                    "Diskusi: Bagaimana cara kita merencanakan masa tua yang tenang, mandiri, dan penuh kenangan indah?",
+                    "Ceritakan momen ketika kamu merasa sangat bersyukur karena memiliki tempat berkeluh kesah yang aman padaku.",
+                    "Skenario: Jika kita harus membuka perpustakaan umum gratis, kategori buku apa yang paling banyak kita sediakan?",
+                    "Diskusi: Apa arti kesetiaan emosional di era digital yang penuh dengan distraksi sosial saat ini?",
+                    "Ceritakan kenangan manis saat kita merayakan keberhasilan kecil kita dengan makan malam romantis sederhana.",
+                    "Diskusi: Bagaimana cara kita mengajarkan anak tentang cara bangkit kembali setelah mengalami kegagalan?",
+                    "Ceritakan momen ketika kamu merasa sangat tersentuh oleh kebaikan hatiku kepada orang lain di jalan.",
+                    "Skenario: Jika kita bisa mendesain ulang kendaraan pribadi kita dengan teknologi masa depan, seperti apa fiturnya?",
+                    "Diskusi: Apa arti sebuah pengampunan mutlak dalam merajut kembali kepercayaan yang sempat retak?",
+                    "Ceritakan kisah di balik keputusan kita untuk saling berkomitmen kuat menghadapi segala rintangan.",
+                    "Diskusi: Bagaimana cara kita menjaga agar kebiasaan kecil sehari-hari tidak menjadi sumber konflik besar?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga melihat kedewasaan emosional kita berdua dari waktu ke waktu.",
+                    "Skenario: Jika kita harus tinggal di pulau tropis terpencil, kegiatan harian apa yang paling ingin kita nikmati?",
+                    "Diskusi: Apa arti sebuah pelukan penyemangat di tengah hari yang sedang terasa sangat berat dan melelahkan?",
+                    "Ceritakan kenangan saat kita berdua berhasil menabung bersama untuk mewujudkan impian bersama.",
+                    "Diskusi: Bagaimana cara kita menyikapi perbedaan pola pikir dengan keluarga besar secara arif dan bijaksana?",
+                    "Ceritakan momen ketika kamu merasa sangat bahagia karena lelahmu seharian terbayar oleh canda tawa kita.",
+                    "Skenario: Jika kita mendadak harus membuat film dokumenter tentang keindahan alam nusantara, rute mana yang dituju?",
+                    "Diskusi: Apa arti sebuah kepercayaan diri yang dibangun dari dukungan penuh pasangan hidup?",
+                    "Ceritakan kisah lucu ketika kita salah menghitung waktu keberangkatan dan hampir tertinggal kereta atau pesawat.",
+                    "Diskusi: Bagaimana cara kita menumbuhkan rasa syukur setiap hari di tengah dinamika hidup yang serba cepat?",
+                    "Ceritakan momen ketika kamu merasa sangat beruntung karena kita bisa saling memahami tanpa banyak bicara.",
+                    "Skenario: Jika kita bisa memiliki satu hari libur ekstra setiap minggunya, aktivitas apa yang wajib kita lakukan?",
+                    "Diskusi: Apa arti sebuah rumah tangga yang harmonis menurut standar kebahagiaan versi kita berdua?",
+                    "Ceritakan kenangan manis saat kita menikmati malam hening di bawah langit bergemintang.",
+                    "Diskusi: Bagaimana cara kita memastikan bahwa hubungan kita selalu bertumbuh ke arah yang lebih positif?",
+                    "Ceritakan momen ketika kamu merasa sangat terharu atas kejutan kecil yang tidak pernah kamu duga sebelumnya.",
+                    "Skenario: Jika kita harus mendirikan sekolah alam untuk anak-anak kurang mampu, mata pelajaran apa yang kamu ajarkan?",
+                    "Diskusi: Apa arti sebuah kesetiaan dalam menjaga rahasia rumah tangga dari orang luar?",
+                    "Ceritakan kisah di balik momen ketika kita saling berjanji untuk selalu saling mendampingi dalam kondisi apapun.",
+                    "Diskusi: Bagaimana cara kita mengatasi rasa jenuh terhadap rutinitas harian dengan cara yang menyenangkan?",
+                    "Ceritakan momen ketika kamu merasa sangat damai saat bersandar di pundakku usai perjalanan jauh.",
+                    "Skenario: Jika kita harus merancang sebuah taman bunga impian di halaman rumah, bunga apa yang dominan?",
+                    "Diskusi: Apa arti sebuah penghargaan kecil atas kerja keras pasangan di dalam rumah tangga?",
+                    "Ceritakan kenangan saat kita pertama kali belajar merencanakan keuangan masa depan berdua.",
+                    "Diskusi: Bagaimana cara kita menjaga agar api cinta ini tetap membara hingga usia senja nanti?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga atas pencapaian terbesarku yang disaksikan olehmu.",
+                    "Skenario: Jika kita bisa mengulang satu momen terindah dalam hidup kita sejak awal kenal, momen apa itu?",
+                    "Diskusi: Apa arti sebuah kedamaian batin yang hanya bisa dirasakan saat kita berada di dalam pelukan satu sama lain?",
+                    "Ceritakan kisah perjalanan hubungan kita secara singkat melalui sudut pandangmu yang paling berkesan.",
+                    "Diskusi & Refleksi Akhir: Apa pesan cinta abadi yang paling ingin kamu sampaikan padaku untuk dikenang sepanjang masa?"
+                ],
+                pdkt: [
+                    "Ceritakan hal paling spontan, konyol, atau nekat yang pernah kamu lakukan semata-mata demi bersenang-senang.",
+                    "Skenario: Jika kamu diberikan tiket perjalanan gratis ke satu kota mana pun di muka bumi, ke mana tujuan pertamamu?",
+                    "Diskusi: Bagaimana kamu mendefinisikan standar 'hari yang sempurna dan membahagiakan' menurut versimu?",
+                    "Ceritakan hal pertama di diri seseorang yang langsung menarik perhatian matamu saat pertama kali berpapasan.",
+                    "Skenario: Jika kamu harus memasak satu menu makanan andalan untuk menyambut tamu, hidangan apa itu?",
+                    "Ceritakan hobi atau kebiasaan unik yang biasanya kamu sembunyikan dari orang-orang baru.",
+                    "Diskusi: Apa lagu yang paling mewakili perjalanan hidup atau suasana hatimu dalam sebulan terakhir?",
+                    "Skenario: Jika kamu bisa menguasai satu keahlian baru secara instan malam ini, keahlian apa yang kamu pilih?",
+                    "Ceritakan satu hal tentang dunia modern ini yang paling sering membuatmu merasa heran atau takjub.",
+                    "Diskusi: Bagaimana cara teman-teman terdekatmu mendeskripsikan kepribadian aslimu di balik layar?",
+                    "Ceritakan tempat pelarian favoritmu di kota ini saat kamu ingin menyendiri dan menenangkan pikiran.",
+                    "Skenario: Jika kamu bisa hidup di era masa lalu, abad ke berapa yang paling ingin kamu kunjungi dan mengapa?",
+                    "Diskusi: Apa buku, film, atau serial televisi yang jalan ceritanya benar-benar mengubah cara pandangmu?",
+                    "Ceritakan ketakutan paling konyol atau tidak masuk akal yang kamu miliki sejak masih kecil.",
+                    "Skenario: Bagaimana caramu menghabiskan waktu luang di akhir pekan jika tidak ada satupun kewajiban menanti?",
+                    "Ceritakan makanan khas daerah atau jajanan kaki lima yang bisa membuatmu jatuh cinta seketika.",
+                    "Skenario: Jika namamu dijadikan judul sebuah film biografi, kira-kira genre dan judul apa yang paling pas?",
+                    "Ceritakan hal paling berharga yang pernah kamu temukan atau menangkan dalam hidupmu sejauh ini.",
+                    "Diskusi: Menurutmu, apa kesan pertama yang orang tangkap saat pertama kali melihat wajah atau senyummu?",
+                    "Ceritakan hal pertama yang biasanya kamu perhatikan saat memasuki sebuah ruangan asing yang baru.",
+                    "Skenario: Jika kamu diberi kekuatan super untuk membaca pikiran orang selama satu hari, apa yang ingin kamu ketahui?",
+                    "Diskusi: Apa acara televisi atau saluran YouTube favorit yang selalu bisa menemanimu berjam-jam tanpa bosan?",
+                    "Ceritakan bagaimana caramu mengatasi rasa gugup saat harus berkenalan dengan orang baru di lingkungan penting.",
+                    "Skenario: Jika kamu harus tinggal di dalam sebuah permainan papan selamanya, permainan apa yang kamu pilih?",
+                    "Ceritakan hal teraneh yang pernah kamu beli secara online karena terbawa rasa penasaran yang tinggi.",
+                    "Diskusi: Bagaimana gaya komunikasimu saat sedang merasa marah atau kecewa kepada seseorang?",
+                    "Ceritakan momen paling berkesan saat kamu melakukan perjalanan solo (*solo traveling*) ke luar kota.",
+                    "Skenario: Jika kamu bisa bertukar profesi dengan seseorang selama seminggu, profesi apa yang ingin kamu coba?",
+                    "Ceritakan hal paling menantang yang pernah kamu pelajari atas kemauanmu sendiri tanpa disuruh orang lain.",
+                    "Skenario: Jika kamu bisa mendesain rumah impianmu tanpa batasan biaya, seperti apa bentuk ruang tamunya?",
+                    "Ceritakan hal kecil di sekitarmu yang hari ini berhasil membuatmu tersenyum tanpa alasan yang jelas.",
+                    "Diskusi: Bagaimana cara kamu biasanya mengisi energi kembali setelah lelah bersosialisasi seharian penuh?",
+                    "Ceritakan memori liburan keluarga paling berkesan yang masih terekam kuat di dalam ingatanmu.",
+                    "Skenario: Jika kamu diberi kesempatan makan malam dengan satu tokoh sejarah dunia, siapa yang kamu pilih?",
+                    "Diskusi: Apa warna favoritmu dan apakah warna itu mencerminkan isi lemari pakaianmu saat ini?",
+                    "Ceritakan bagaimana reaksimu jika tiba-tiba harus menghadapi situasi darurat di tempat umum.",
+                    "Skenario: Apa mimpi sederhana yang ingin kamu wujudkan sebelum pergantian tahun ini berakhir?",
+                    "Ceritakan hal menarik apa yang baru saja kamu pelajari atau tonton di internet minggu ini.",
+                    "Diskusi: Apa jenis cuaca atau musim yang paling membuatmu merasa produktif dan bersemangat menjalani hari?",
+                    "Skenario: Jika kamu harus memilih satu hewan untuk dijadikan maskot hidupmu, hewan apa itu dan apa alasannya?",
+                    "Ceritakan pujian terbaik atau paling berkesan yang pernah kamu terima dari orang yang tidak dikenal.",
+                    "Diskusi: Bagaimana caramu menentukan pilihan saat dihadapkan pada dua opsi yang sama-sama menarik?",
+                    "Ceritakan hal paling konyol yang pernah kamu lakukan demi menarik perhatian orang yang kamu suka dulu.",
+                    "Skenario: Jika kamu bisa mengubah satu peraturan di dunia kerja atau sekolah saat ini, apa aturan itu?",
+                    "Ceritakan kenangan masa sekolah yang paling membuatmu rindu jika diingat kembali bersama teman lama.",
+                    "Diskusi: Bagaimana gaya belanjamu, apakah tipe yang terencana matang atau impulsif karena suka?",
+                    "Ceritakan hal yang paling membuatmu merasa kagum pada pencapaian teknologi masa kini.",
+                    "Skenario: Jika kamu punya galeri seni pribadi, karya seperti apa yang akan kamu pajang di dalamnya?",
+                    "Diskusi: Apa jenis olahraga atau aktivitas fisik yang paling kamu nikmati untuk menjaga kebugaran tubuh?",
+                    "Ceritakan bagaimana caramu menilai apakah seseorang itu bisa dipercaya dalam waktu singkat.",
+                    "Ceritakan hal paling unik atau khas dari kota asal atau tempat kelahiranku yang kamu ketahui.",
+                    "Skenario: Jika kamu bisa merekam mimpi indahmu semalam dan memutarnya kembali, mimpi tentang apa itu?",
+                    "Diskusi: Apa tipe musik atau musisi yang selalu bisa menaikkan suasana hatimu saat sedang merasa suntuk?",
+                    "Ceritakan bagaimana caramu menghadapi kritik pedas dari orang yang tidak terlalu dekat denganmu.",
+                    "Skenario: Apa hal paling menenangkan yang bisa kamu lakukan setelah seharian penuh menghadapi stres kerja?",
+                    "Skenario: Jika kamu mendadak memenangkan undian besar, hal pertama apa yang akan kamu beli?",
+                    "Ceritakan kebiasaan unik yang selalu kamu lakukan sebelum tidur di malam hari agar nyenyak.",
+                    "Diskusi: Apa hal paling berkesan dari perayaan ulang tahunmu di masa lalu yang masih terekam?",
+                    "Ceritakan bagaimana caramu menunjukkan rasa terima kasih kepada seseorang yang telah membantumu.",
+                    "Skenario: Apa jenis kafe atau tempat nongkrong yang paling cocok dengan karakter dan selera estetikamu?",
+                    "Skenario: Jika kamu bisa menguasai bahasa asing tambahan secara instan, bahasa apa yang kamu pilih?",
+                    "Ceritakan hal paling menarik yang pernah kamu temukan saat sedang berjalan-jalan santai tanpa arah.",
+                    "Diskusi: Bagaimana caramu menjaga mood agar tetap stabil di tengah hari yang super sibuk?",
+                    "Ceritakan jenis hadiah atau kado paling berkesan yang pernah diberikan seseorang kepadamu.",
+                    "Skenario: Jika kamu harus menulis sebuah buku tentang perjalanan hidupmu, apa judul bab pertamanya?",
+                    "Diskusi: Apa hal yang paling membuatmu merasa penasaran terhadap cara kerja suatu benda elektronik?",
+                    "Ceritakan bagaimana caramu merayakan hari libur nasional atau akhir pekan yang panjang.",
+                    "Diskusi: Apa makanan penutup (*dessert*) favorit yang selalu bisa menggugah selera makanmu seketika?",
+                    "Skenario: Jika kamu bisa berkolaborasi dengan seniman atau kreator siapapun, siapa pilihanmu?",
+                    "Ceritakan hal paling berani yang pernah kamu lakukan demi membela kebenaran atau seorang teman.",
+                    "Diskusi: Bagaimana caramu menyikapi perubahan rencana yang terjadi secara mendadak di luar dugaan?",
+                    "Ceritakan kenangan indah saat kamu berhasil menyelesaikan sebuah proyek sulit dengan sukses.",
+                    "Diskusi: Apa jenis tanaman atau bunga yang menurutmu paling indah dan mencerminkan karaktermu?",
+                    "Skenario: Jika kamu bisa mendengarkan satu lagu saja seumur hidup, lagu apa yang kamu pilih?",
+                    "Ceritakan hal paling lucu yang pernah salah kamu dengar (*misheard lyrics*) saat mendengarkan lagu.",
+                    "Diskusi: Bagaimana caramu memilih film atau serial untuk ditonton saat menghabiskan malam minggu?",
+                    "Ceritakan hal yang paling membuatmu merasa takjub saat melihat keindahan pemandangan alam semesta.",
+                    "Ceritakan kenangan masa kecil bersama hewan peliharaan yang paling tidak bisa dilupakan sampai kini.",
+                    "Diskusi: Bagaimana caramu mengatur skala prioritas saat tugas menumpuk secara bersamaan?",
+                    "Ceritakan jenis kopi atau minuman manis andalan yang selalu kamu pesan di kedai kopi langganan.",
+                    "Skenario: Jika kamu bisa mendesain ulang bentuk kendaraan umum di kota ini, seperti apa bentuknya?",
+                    "Ceritakan hal paling menarik yang pernah kamu pelajari dari kebudayaan daerah lain di Indonesia.",
+                    "Diskusi: Bagaimana caramu mengekspresikan kekesalan saat terjebak dalam kemacetan lalu lintas parah?",
+                    "Ceritakan momen paling membanggakan saat kamu berhasil mengatasi rasa takutmu terhadap sesuatu.",
+                    "Diskusi: Apa jenis pakaian atau gaya busana yang paling membuatmu merasa nyaman dan percaya diri?",
+                    "Skenario: Jika kamu diberi kesempatan menjadi penyelenggara sebuah festival besar, festival apa itu?",
+                    "Ceritakan hal paling berkesan dari guru atau mentor yang pernah membimbing perjalanan hidupmu.",
+                    "Diskusi: Bagaimana caramu menilai apakah sebuah restoran atau tempat makan pinggir jalan itu enak?",
+                    "Skenario: Apa jenis teknologi masa depan yang paling kamu harapkan benar-benar tercipta dalam hidupmu?",
+                    "Ceritakan kenangan manis saat kamu pertama kali belajar mengendarai sepeda atau kendaraan bermotor.",
+                    "Diskusi: Bagaimana caramu membagi waktu antara hobi personal dan tanggung jawab utama harian?",
+                    "Ceritakan hal paling unik yang pernah kamu lihat atau saksikan secara langsung di tempat umum.",
+                    "Skenario: Jika kamu bisa mengubah satu aspek dari sistem pendidikan saat ini, apa yang akan diubah?",
+                    "Diskusi: Apa jenis permainan (*game*) atau teka-teki yang paling menguji ketelitian dan logika otakmu?",
+                    "Ceritakan momen paling berharga saat kamu berhasil membuat orang lain tersenyum bahagia karena ulahmu.",
+                    "Diskusi: Bagaimana caramu memilih hadiah yang pas untuk ulang tahun sahabat terdekatmu?",
+                    "Ceritakan hal paling mengesankan dari pemandangan senja di tempat favorit yang pernah kamu kunjungi.",
+                    "Skenario: Jika kamu bisa hidup berdampingan dengan satu karakter fiksi, siapa yang kamu pilih?",
+                    "Ceritakan hal pertama yang kamu lakukan setiap kali melangkah keluar rumah di pagi hari.",
+                    "Diskusi: Bagaimana caramu menjaga agar meja kerja atau kamarmu tetap rapi dan nyaman ditinggali?",
+                    "Ceritakan jenis cerita fiksi (misteri, romantis, sci-fi) yang paling mendominasi perpustakaan atau tontonanmu.",
+                    "Ceritakan kenangan lucu saat kamu salah mengenakan pakaian atau kostum di suatu acara resmi.",
+                    "Skenario: Jika kamu bisa membuat penemuan baru untuk memudahkan hidup manusia, penemuan apa itu?",
+                    "Ceritakan hal paling berharga yang kamu pelajari dari kesalahan terbesar di masa lalu.",
+                    "Diskusi: Bagaimana caramu menyikapi komentar negatif dari orang yang tidak mengenalmu dengan baik?",
+                    "Ceritakan jenis buah-buahan segar yang rasanya tidak pernah membosankan untuk disantap.",
+                    "Ceritakan momen paling seru saat kamu mengikuti kegiatan atau perlombaan di masa sekolah dulu.",
+                    "Skenario: Jika kamu bisa mengatur ulang tata kota tempat tinggalmu, fasilitas apa yang akan kamu tambahkan?",
+                    "Ceritakan hal paling menenangkan dari suara rintik hujan bagi telinga dan pikiranmu.",
+                    "Diskusi: Bagaimana caramu menunjukkan ketertarikan pada suatu topik obrolan baru dengan orang asing?",
+                    "Ceritakan jenis kerajinan tangan atau karya seni visual yang paling ingin kamu coba buat sendiri.",
+                    "Ceritakan kenangan manis saat kamu menikmati malam di luar rumah bersama teman-teman sekolah.",
+                    "Skenario: Jika kamu bisa menjadi ahli di satu cabang ilmu pengetahuan instan, ilmu apa yang dipilih?",
+                    "Ceritakan hal paling berkesan dari tradisi keluarga besarmu saat hari raya besar tiba.",
+                    "Diskusi: Bagaimana caramu menghadapi rasa bosan yang melanda di tengah jam kerja yang panjang?",
+                    "Ceritakan jenis alat musik yang paling ingin kamu kuasai permainannya sejak dulu kala.",
+                    "Ceritakan momen paling lucu saat kamu mencoba memasak resep baru dari video internet tapi gagal.",
+                    "Skenario: Jika kamu diberi kesempatan membuat aturan hidup universal, apa poin utamanya?",
+                    "Ceritakan hal paling menarik dari gaya hidup masyarakat di kota metropolitan besar.",
+                    "Diskusi: Bagaimana caramu memilih destinasi wisata impian untuk rencana liburan tahun depan?",
+                    "Ceritakan jenis roti atau kue tradisional yang rasanya selalu membangkitkan memori masa kecil.",
+                    "Ceritakan kenangan berharga saat kamu pertama kali mendapatkan uang hasil kerja keras sendiri.",
+                    "Skenario: Jika kamu bisa berpetualang ke luar angkasa, planet mana yang paling ingin kamu singgahi?",
+                    "Ceritakan hal paling mengesankan dari cara seseorang memperlakukanmu dengan tulus dan baik.",
+                    "Diskusi: Bagaimana caramu mengevaluasi diri setelah melewati minggu yang melelahkan?",
+                    "Ceritakan jenis arsitektur bangunan di dunia yang paling membuatmu terpesona saat melihatnya.",
+                    "Ceritakan momen paling tak terduga yang mengubah arah rencana perjalanan liburanmu.",
+                    "Skenario: Jika kamu bisa menghidupkan kembali satu tradisi masa lalu, tradisi apa itu?",
+                    "Ceritakan hal paling unik dari koleksi barang pribadi yang kamu miliki di kamar.",
+                    "Diskusi: Bagaimana caramu menyebarkan energi positif kepada orang-orang di sekitarmu?",
+                    "Ceritakan jenis cerita dokumenter alam yang paling membuatmu betah menontonnya berjam-jam.",
+                    "Ceritakan kenangan manis saat kamu berhasil menanam atau merawat tanaman hingga tumbuh subur.",
+                    "Skenario: Jika kamu bisa menjadi sutradara film layar lebar, genre film seperti apa yang akan kamu buat?",
+                    "Ceritakan hal paling berharga yang kamu temukan dari sebuah buku catatan tua milikmu.",
+                    "Diskusi: Bagaimana caramu memilih prioritas dalam merencanakan keuangan bulanan pribadi?",
+                    "Ceritakan jenis festival budaya atau perayaan seni yang paling ingin kamu kunjungi secara langsung.",
+                    "Ceritakan momen paling mengharukan saat kamu menonton sebuah film keluarga bersama orang tua.",
+                    "Skenario: Jika kamu bisa mendesain seragam kerja masa depan, seperti apa model dan warnanya?",
+                    "Ceritakan hal paling menarik dari mengamati perilaku burung atau hewan liar di alam bebas.",
+                    "Diskusi: Bagaimana caramu menjaga keseimbangan antara ambisi karier dan ketenangan batin?",
+                    "Ceritakan jenis teh herbal atau minuman hangat tradisional yang paling menenangkan tenggorokanmu.",
+                    "Ceritakan kenangan indah saat kamu menjelajahi sudut-sudut tersembunyi di kota tempat tinggalmu.",
+                    "Skenario: Jika kamu bisa memiliki satu toko impian sendiri, toko seperti apa yang akan kamu buka?",
+                    "Ceritakan hal paling mengesankan dari teknik fotografi atau seni visual yang kamu sukai.",
+                    "Diskusi: Bagaimana caramu mengatasi rasa canggung di awal pertemuan dengan orang penting?",
+                    "Ceritakan jenis cerita rakyat atau legenda nusantara yang ceritanya paling berkesan bagimu.",
+                    "Ceritakan momen paling seru saat kamu berkemah atau menikmati alam terbuka bersama teman.",
+                    "Skenario: Jika kamu bisa mengubah satu hal dari kebiasaan buruk masyarakat modern saat ini, apa itu?",
+                    "Ceritakan hal paling unik dari cara bahasa gaul atau tren komunikasi berkembang saat ini.",
+                    "Diskusi: Bagaimana caramu merancang resolusi tahun baru agar benar-benar bisa terwujud nyata?",
+                    "Ceritakan jenis sup atau makanan berkuah hangat yang paling nikmat disantap saat hujan turun.",
+                    "Ceritakan kenangan manis saat kamu menerima surat atau pesan tulisan tangan dari seseorang.",
+                    "Skenario: Jika kamu bisa menciptakan satu hari libur nasional baru, apa nama hari libur itu dan tujuannya?",
+                    "Ceritakan hal paling berkesan dari pameran seni atau museum yang pernah kamu datangi.",
+                    "Diskusi: Bagaimana caramu menilai apakah sebuah berita atau informasi di internet itu valid?",
+                    "Ceritakan jenis permen atau camilan manis yang dulu menjadi favoritmu saat masih kecil.",
+                    "Ceritakan momen paling membanggakan saat kamu berhasil merakit atau memperbaiki sesuatu sendiri.",
+                    "Skenario: Jika kamu bisa menjadi bagian dari kru penjelajah samudra, apa tugas utamamu di kapal?",
+                    "Ceritakan hal paling menarik dari mempelajari sejarah peradaban manusia masa lampau.",
+                    "Diskusi: Bagaimana caramu memilih warna cat atau dekorasi interior untuk mempercantik ruangan?",
+                    "Ceritakan jenis alat tulis favorit yang membuatmu lebih bersemangat menulis atau mencatat.",
+                    "Ceritakan kenangan indah saat kamu menikmati keindahan pemandangan dari atas ketinggian.",
+                    "Skenario: Jika kamu bisa memiliki satu kekuatan magis untuk membantu sesama, kekuatan apa itu?",
+                    "Ceritakan hal paling berharga yang kamu pelajari dari pengalaman bekerja sama dalam tim.",
+                    "Diskusi: Bagaimana caramu mengekspresikan rasa kagum terhadap keindahan alam ciptaan Tuhan?",
+                    "Ceritakan jenis kue kering atau pastry yang rasanya selalu berhasil membuatmu ketagihan.",
+                    "Ceritakan momen paling lucu saat kamu salah mengenali orang di tempat umum.",
+                    "Skenario: Jika kamu bisa mendesain sebuah taman kota impian, fasilitas apa saja yang ada di dalamnya?",
+                    "Ceritakan hal paling menarik dari mengamati bintang dan rasi galaksi di malam hari.",
+                    "Diskusi: Bagaimana caramu menjaga agar semangat belajar hal baru tidak pernah padam?",
+                    "Ceritakan jenis rempah atau bumbu dapur yang aroma khasnya paling kamu sukai saat memasak.",
+                    "Ceritakan kenangan manis saat kamu merayakan kelulusan atau pencapaian besar bersama sahabat.",
+                    "Skenario: Jika kamu bisa menulis surat untuk dirimu sepuluh tahun ke depan, apa kalimat pembukanya?",
+                    "Ceritakan hal paling mengesankan dari cara seseorang menunjukkan kepedulian sosial di sekitarmu.",
+                    "Diskusi: Bagaimana caramu menyikapi perubahan musim yang silih berganti di negara tropis ini?",
+                    "Ceritakan jenis es krim atau gelato dengan varian rasa unik yang pernah kamu coba.",
+                    "Ceritakan momen paling seru saat kamu mengikuti permainan outbound atau kerja kelompok.",
+                    "Skenario: Jika kamu bisa menjadi duta pariwisata sebuah daerah, tempat mana yang akan kamu promosikan?",
+                    "Ceritakan hal paling menarik dari mempelajari filosofi hidup dari berbagai budaya di dunia.",
+                    "Diskusi: Bagaimana caramu memilih pakaian yang nyaman untuk perjalanan jauh menggunakan pesawat.",
+                    "Ceritakan jenis roti lapis (*sandwich*) atau burger dengan isian paling lezat menurut selera lidahmu.",
+                    "Ceritakan kenangan indah saat kamu menemukan buku langka atau barang antik di toko tua.",
+                    "Skenario: Jika kamu bisa menciptakan satu undang-undang baru demi kebaikan lingkungan, aturan apa itu?",
+                    "Ceritakan hal paling berharga yang kamu dapatkan dari hobi baru yang kamu tekuni belakangan ini.",
+                    "Diskusi: Bagaimana caramu menilai kualitas sebuah karya seni pahat atau patung kuno?",
+                    "Ceritakan jenis buah tangan atau oleh-oleh khas daerah yang paling selalu kamu nantikan.",
+                    "Ceritakan momen paling berkesan saat kamu pertama kali melihat keindahan laut lepas.",
+                    "Skenario: Jika kamu bisa mendesain ulang sistem transportasi publik masa depan, seperti apa bentuknya?",
+                    "Ceritakan hal paling menarik dari mengamati kebiasaan unik kucing atau anjing peliharaan.",
+                    "Diskusi: Bagaimana caramu menyusun jadwal harian agar semua target kegiatan bisa terselesaikan?",
+                    "Ceritakan jenis keripik atau camilan gurih renyah yang selalu habis dalam sekejap saat nonton film.",
+                    "Ceritakan kenangan manis saat kamu berjalan-jalan menikmati suasana malam di pusat kota.",
+                    "Skenario: Jika kamu bisa mengundang tiga tokoh inspiratif untuk makan malam bersama, siapa mereka?",
+                    "Ceritakan hal paling berkesan dari nasihat bijak yang diberikan oleh kakek atau nenekmu.",
+                    "Diskusi: Bagaimana caramu menjaga ketenangan pikiran di tengah bisingnya suasana perkotaan.",
+                    "Ceritakan jenis minuman segar berbahan dasar buah yang paling cocok diminum saat cuaca terik.",
+                    "Ceritakan momen paling membanggakan saat kamu berhasil merampungkan target bacaan buku.",
+                    "Skenario: Jika kamu bisa merancang sebuah museum pribadi untuk hobi atau koleksimu, apa isinya?",
+                    "Diskusi: Apa hal paling berkesan yang kamu pelajari dari interaksi sosialmu minggu ini?",
+                    "Refleksi: Apa kesan dan harapan pertamamu saat kita mulai sering menghabiskan waktu dan mengobrol bersama?"
+                ],
+                sahabat: [
+                    "Ceritakan kronologi lengkap bagaimana awal mula kita bisa saling kenal dan menjadi dekat seperti sekarang.",
+                    "Diskusi: Apa arti kesetiakawanan sejati bagi orang dewasa yang sudah sibuk dengan urusan masing-masing?",
+                    "Skenario: Jika kita berdua mendadak kembali menjadi anak remaja berumur 15 tahun, kenakalan apa yang ingin diulangi?",
+                    "Ceritakan momen paling absurd atau konyol saat kita melakukan perjalanan (*road trip*) bersama.",
+                    "Diskusi: Bagaimana cara kita mempertahankan ikatan pertemanan agar tidak renggang dimakan oleh kesibukan waktu?",
+                    "Ceritakan rahasia terbesarku di masa lalu yang berhasil kamu simpan rapat-rapat tanpa bocor ke siapapun.",
+                    "Skenario: Jika kita harus mendirikan perusahaan rintisan (*startup*) bersama, posisi jabatan apa yang akan kamu pegang?",
+                    "Ceritakan momen ketika kamu merasa sangat kesal padaku tapi memilih untuk memendamnya.",
+                    "Diskusi: Apa nasihat paling berharga dari masa lalu yang sampai hari ini masih sangat kamu pegang teguh?",
+                    "Ceritakan kenangan paling kocak saat kita gagal total merencanakan suatu acara atau kejutan.",
+                    "Skenario: Jika kisah persahabatan kita diangkat ke layar lebar Hollywood, siapa sutradara dan aktor utamanya?",
+                    "Ceritakan barang peninggalan masa sekolah kita yang masih tersimpan rapi di laci kamarmu.",
+                    "Diskusi: Apa sifat burukku di awal pertemanan kita yang paling sulit kamu maklumi?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga melihat pencapaianku dalam hidup.",
+                    "Skenario: Jika kita berdua terdampar di tengah hutan belantara, siapa yang akan panik dan siapa yang tenang?",
+                    "Ceritakan lagu atau album musik yang menjadi saksi bisu masa-masa kebersamaan kita dulu.",
+                    "Diskusi: Bagaimana caramu menilai apakah seseorang itu layak diandalkan dalam situasi darurat?",
+                    "Ceritakan kejadian paling menegangkan saat kita nekat melanggar aturan sekolah bersama.",
+                    "Skenario: Jika kita bisa memutar waktu ke satu hari paling bahagia di masa lalu, hari apa yang kita pilih?",
+                    "Ceritakan kesan jujurmu saat melihat transformasi kepribadianku dari masa lalu hingga sekarang.",
+                    "Ceritakan kenangan masa sekolah atau kuliah dulu yang paling bikin rindu jika diingat kembali.",
+                    "Skenario: Jika kita terdampar di pulau terpencil berdua, siapa di antara kita yang akan panik duluan?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan hanya karena menuruti gengsi semata.",
+                    "Diskusi: Bagaimana caramu menghadapi masa-masa di mana kita jarang bertemu karena kesibukan?",
+                    "Ceritakan momen paling mengharukan yang pernah kita lewati dalam suka maupun duka bersama.",
+                    "Skenario: Jika kita harus mendirikan sebuah usaha bersama hari ini, bidang apa yang akan kita pilih?",
+                    "Diskusi: Apa sifat terbaikku yang menurutmu patut diapresiasi lebih oleh orang-orang di luar sana?",
+                    "Diskusi: Bagaimana pandanganmu tentang arti kesetiakawanan di era modern saat ini?",
+                    "Ceritakan hal paling mengesalkan dari diriku yang diam-diam bisa kamu maklumi dengan sabar.",
+                    "Ceritakan satu kalimat apresiasi tulus yang ingin kamu ucapkan untuk persahabatan kita hari ini.",
+                    "Ceritakan permainan atau aktivitas masa kecil yang paling sering kita mainkan bersama dulu.",
+                    "Diskusi: Bagaimana caramu menghiburku saat aku sedang menangis atau mengalami kekecewaan berat?",
+                    "Ceritakan kenangan paling lucu saat kita gagal merencanakan suatu liburan atau perjalanan.",
+                    "Skenario: Jika kita harus bertukar gaya berpakaian selama sehari, seperti apa penampilan kita?",
+                    "Ceritakan hal paling berharga yang berhasil kamu pelajari dariku selama kita bersahabat.",
+                    "Diskusi: Bagaimana caramu menilai perubahan gaya hidupku dari masa lalu hingga sekarang?",
+                    "Ceritakan makanan atau jajanan legendaris masa kecil yang selalu kita buru bersama.",
+                    "Ceritakan momen paling menegangkan yang pernah kita hadapi bersama di luar dugaan.",
+                    "Skenario: Jika kita bisa kembali ke masa remaja dulu, apa hal bodoh yang ingin kita cegah?",
+                    "Ceritakan pujian tulus dari orang lain tentang kedekatan kita yang paling kamu ingat.",
+                    "Ceritakan kebiasaan anehku yang hanya diketahui olehmu seorang sebagai sahabat dekat.",
+                    "Diskusi: Bagaimana caramu menyelamatkanku dari situasi canggung atau berbahaya di masa lalu?",
+                    "Ceritakan lagu atau album musik yang menjadi soundtrack masa-masa kebersamaan kita dulu.",
+                    "Ceritakan kenangan paling manis saat kita saling merayakan hari ulang tahun satu sama lain.",
+                    "Skenario: Jika kita harus membuat film dokumenter tentang kenakalan masa muda kita, apa judulnya?",
+                    "Ceritakan hal paling inspiratif yang pernah aku lakukan dan memotivasi hidupmu.",
+                    "Diskusi: Bagaimana caramu menyikapi saat kita memiliki pendapat yang saling bertentangan?",
+                    "Ceritakan tempat nongkrong legendaris kita di masa lalu yang paling menyimpan banyak cerita.",
+                    "Ceritakan momen paling berharga di mana kita saling membela di hadapan orang lain.",
+                    "Skenario: Jika kita diberi kesempatan bertukar memori selama satu hari, memori apa yang ingin kamu rasakan dariku?",
+                    "Ceritakan hal paling konyol yang pernah kita pertaruhkan hanya karena tantangan kecil.",
+                    "Diskusi: Bagaimana caramu menilai perkembangan kedewasaan mental kita berdua sejak dulu?",
+                    "Ceritakan kenangan saat kita begadang semalaman suntuk tanpa tujuan yang jelas.",
+                    "Ceritakan hadiah paling sederhana dariku yang paling lama kamu simpan dan rawat.",
+                    "Skenario: Jika kita harus menulis surat untuk persahabatan kita 20 tahun ke depan, apa isinya?",
+                    "Ceritakan hal paling menghibur yang biasa kamu lakukan saat aku sedang bad mood parah.",
+                    "Diskusi: Bagaimana caramu meyakinkan orang tuaku saat kita dulu merencanakan perjalanan jauh?",
+                    "Ceritakan memori lucu saat kita salah kostum atau salah datangi suatu tempat acara.",
+                    "Ceritakan hal paling berkesan dari cara kita saling mendukung saat masa-masa ujian sekolah.",
+                    "Skenario: Jika kita punya kekuatan super khusus persahabatan, kekuatan apa yang paling berguna?",
+                    "Ceritakan hal paling absurd yang pernah kita percayai sebagai mitos saat masih kecil.",
+                    "Diskusi: Bagaimana caramu mengenali tanda-tanda kalau aku sedang menyembunyikan masalah darimu?",
+                    "Ceritakan kenangan manis saat kita menikmati makanan kaki lima di pinggir jalan larut malam.",
+                    "Ceritakan hal paling menantang yang berhasil kita taklukkan bersama-sama berkat kerja sama.",
+                    "Skenario: Jika kita mendadak menjadi artis terkenal, skandal persahabatan seperti apa yang bakal diberitakan?",
+                    "Ceritakan nasihat konyol tapi ampuh yang pernah aku berikan padamu saat kamu patah hati.",
+                    "Diskusi: Bagaimana caramu menjaga agar obrolan kita tidak pernah kehabisan bahan bahasan?",
+                    "Ceritakan momen paling emosional saat kita harus berpisah jarak sementara waktu.",
+                    "Ceritakan barang peninggalan masa lalu kita berdua yang masih tersimpan rapi di kamarmu.",
+                    "Skenario: Jika kita harus membuka usaha kedai kopi atau kafe bersama, konsep apa yang kita pakai?",
+                    "Ceritakan hal paling lucu saat kita mencoba mengikuti tren gaya rambut atau fesyen masa lalu.",
+                    "Diskusi: Bagaimana caramu memaafkan kesalahanku di masa lalu yang sempat membuatmu kesal?",
+                    "Ceritakan kenangan indah saat kita merayakan kelulusan atau pencapaian besar pertama kita.",
+                    "Diskusi: Apa hal paling berharga dari ikatan persahabatan kita yang tidak bisa dibeli dengan uang?",
+                    "Skenario: Jika kita bisa memutar waktu ke satu hari paling bahagia di masa lalu, hari apa itu?",
+                    "Ceritakan lelucon atau ejekan lama di antara kita yang sudah kadaluarsa tapi tetap lucu.",
+                    "Diskusi: Bagaimana caramu menilai ketulusan seseorang berdasarkan pengalaman persahabatan kita?",
+                    "Ceritakan momen paling mendebarkan saat kita berdua mencoba melanggar aturan kecil dulu.",
+                    "Ceritakan hal paling romantis secara platonic yang pernah aku lakukan untukmu.",
+                    "Diskusi: Apa kesan mendalammu melihat perubahanku dari masa lalu hingga menjadi sosokku yang sekarang?",
+                    "Ceritakan kenangan paling kocak saat kita pertama kali belajar memasak atau membuat kue bersama.",
+                    "Diskusi: Bagaimana caramu menyelamatkanku dari kebosanan saat terjebak dalam acara yang membosankan?",
+                    "Ceritakan hal paling kreatif yang pernah kita buat bersama untuk tugas sekolah atau kuliah.",
+                    "Ceritakan momen paling mengharukan saat keluargamu menyambutku seperti bagian dari keluarga sendiri.",
+                    "Skenario: Jika kita harus hidup di dalam dunia game petualangan bersama, peran apa yang kita ambil?",
+                    "Ceritakan kebiasaan tidurku yang paling aneh atau mengganggu saat kita menginap bersama.",
+                    "Diskusi: Bagaimana caramu menghadapiku saat aku sedang keras kepala dan tidak mau mendengar nasihat?",
+                    "Ceritakan kenangan indah saat kita menikmati pemandangan alam bebas untuk pertama kalinya berdua.",
+                    "Ceritakan hal paling mengejutkan yang pernah kamu ketahui tentang rahasia masa laluku.",
+                    "Skenario: Jika kita bisa memiliki satu kendaraan ajaib untuk road trip keliling dunia, seperti apa bentuknya?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan demi menghindari hukuman guru atau dosen.",
+                    "Diskusi: Bagaimana caramu mengekspresikan rasa rindu kepada sahabat saat sibuk bekerja?",
+                    "Ceritakan kenangan saat kita pertama kali memiliki barang kembar persahabatan.",
+                    "Ceritakan momen paling berkesan saat kita saling meminjamkan pakaian atau barang pribadi.",
+                    "Skenario: Jika kita menjadi detektif swasta, kasus apa yang paling seru untuk kita pecahkan bersama?",
+                    "Ceritakan hal paling memalukan yang berhasil kamu tutupi dariku dengan susah payah.",
+                    "Diskusi: Bagaimana caramu menilai batasan antara kritik yang membangun dan ejekan antar sahabat?",
+                    "Ceritakan kenangan manis saat kita menghabiskan liburan panjang di rumah salah satu dari kita.",
+                    "Ceritakan hal paling bermakna dari ucapan selamat ulang tahun yang pernah aku berikan padamu.",
+                    "Skenario: Jika kita harus membuat lagu tema khusus persahabatan kita, seperti apa ketukan musiknya?",
+                    "Ceritakan hal paling unik dari cara kita saling menyapa atau memberikan kode rahasia di tempat umum.",
+                    "Diskusi: Bagaimana caramu mengatasi rasa cemburu jika aku punya sahabat dekat yang lain?",
+                    "Ceritakan kenangan lucu saat kita salah naik kendaraan umum atau tersesat di kota orang.",
+                    "Ceritakan momen paling emosional saat kita harus merelakan salah satu dari kita pindah kota.",
+                    "Skenario: Jika kita bisa mendesain kamar tidur khusus tempat kita nongkrong, seperti apa isinya?",
+                    "Ceritakan hal paling menakutkan yang pernah kita tonton bersama di bioskop atau rumah.",
+                    "Diskusi: Bagaimana caramu mengingatkanku secara halus jika aku mulai berbuat ceroboh?",
+                    "Ceritakan kenangan manis saat kita berbagi makanan di kantin sekolah dengan porsi pas-pasan.",
+                    "Ceritakan hal paling mengesankan dari caramu merayakan kesuksesanku di masa lalu.",
+                    "Skenario: Jika kita berdua menjadi penulis novel, genre cerita fiksi seperti apa yang kita tulis?",
+                    "Ceritakan hal paling konyol yang pernah kita perdebatkan mati-matian padahal tidak penting.",
+                    "Diskusi: Bagaimana caramu menilai apakah suatu cerita rahasia aman di tangan persahabatan kita?",
+                    "Ceritakan kenangan saat kita mengikuti ekstrakurikuler atau organisasi yang sama di sekolah.",
+                    "Ceritakan momen paling mengharukan saat kamu datang menengokku di saat aku sakit.",
+                    "Skenario: Jika kita hidup di era kerajaan masa lampau, posisi bangsawan apa yang kita pegang?",
+                    "Ceritakan hal paling ajaib atau kebetulan tak terduga yang pernah terjadi pada kita berdua.",
+                    "Diskusi: Bagaimana caramu menunjukkan rasa terima kasih tanpa harus mengucapkannya secara langsung?",
+                    "Ceritakan kenangan manis saat kita menghabiskan waktu berjam-jam di toko buku atau perpustakaan.",
+                    "Diskusi: Apa hal paling berharga yang diajarkan oleh persahabatan kita tentang arti kesabaran?",
+                    "Skenario: Jika kita bisa mengubah satu keputusan ceroboh di masa remaja, keputusan apa itu?",
+                    "Ceritakan hal paling lucu saat kita mencoba bahasa gaul baru yang ternyata sudah kuno.",
+                    "Diskusi: Bagaimana caramu menghadapiku saat aku sedang mengalami krisis kepercayaan diri?",
+                    "Ceritakan kenangan indah saat kita menikmati indahnya hujan lebat di teras rumah berdua.",
+                    "Ceritakan momen paling berkesan saat kita saling bertukar kado kejutan di hari istimewa.",
+                    "Skenario: Jika kita mendadak terdampar di hutan rimba, keahlian apa yang masing-masing kita andalkan?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan demi mendapatkan diskon barang murah.",
+                    "Diskusi: Bagaimana caramu menjaga agar komunikasi kita tidak terasa kaku setelah lama tak berjumpa?",
+                    "Ceritakan kenangan saat kita pertama kali belajar naik sepeda atau kendaraan bermotor bersama.",
+                    "Ceritakan hal paling mengesankan dari cara orang tua kita memperlakukan persahabatan kita.",
+                    "Skenario: Jika kita bisa merekam tawa lepas kita di masa lalu, di momen apa suara tawa itu tercipta?",
+                    "Ceritakan hal paling absurd yang pernah kita jadikan taruhan dalam permainan kecil.",
+                    "Diskusi: Bagaimana caramu menyikapi saat aku membuat keputusan hidup yang berbeda dari biasanya?",
+                    "Ceritakan kenangan manis saat kita menikmati jajanan pinggir jalan usai pulang sekolah.",
+                    "Ceritakan momen paling mengharukan saat kita saling mendoakan keberhasilan masa depan.",
+                    "Skenario: Jika kita harus membuka pameran seni tentang kenangan kita, karya apa yang dipajang?",
+                    "Ceritakan hal paling berkesan dari caramu menghiburku saat aku kehilangan barang berharga.",
+                    "Diskusi: Bagaimana caramu menilai loyalitas seseorang di dalam lingkaran pertemanan kita?",
+                    "Ceritakan kenangan saat kita nekat menonton konser musik idola tanpa persiapan matang.",
+                    "Ceritakan hal paling lucu saat kita salah memanggil nama orang di tempat umum.",
+                    "Skenario: Jika kita menjadi kapten kapal bajak laut, apa nama bendera kru persahabatan kita?",
+                    "Ceritakan hal paling menarik dari cara kita saling melengkapi kekurangan satu sama lain.",
+                    "Diskusi: Bagaimana caramu merayakan ulang tahun persahabatan kita setiap tahunnya?",
+                    "Ceritakan kenangan manis saat kita menghabiskan malam tahun baru bersama di luar rumah.",
+                    "Ceritakan momen paling berharga di mana kita berhasil keluar dari masalah besar berkat kerja sama.",
+                    "Skenario: Jika kita memiliki kekuatan teleportasi, tempat rahasia mana yang pertama kita kunjungi?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan hanya demi pamer di media sosial dulu.",
+                    "Diskusi: Bagaimana caramu menghadapiku saat aku sedang berada di titik terendah hidupku?",
+                    "Ceritakan kenangan saat kita pertama kali mencoba hobi ekstrem atau menantang adrenalin.",
+                    "Ceritakan hal paling berkesan dari pujian tulus yang kuberikan atas hasil kerjamu.",
+                    "Skenario: Jika kita harus tinggal di dalam rumah pohon raksasa, seperti apa pembagian kamarnya?",
+                    "Ceritakan hal paling lucu saat kita salah memahami instruksi atau petunjuk arah jalan.",
+                    "Diskusi: Bagaimana caramu menjaga agar semangat persahabatan kita tidak pernah luntur?",
+                    "Ceritakan kenangan manis saat kita menikmati kebersamaan di tepi pantai menjelang senja.",
+                    "Ceritakan momen paling mengharukan saat kita saling bertukar cerita tentang keluarga.",
+                    "Skenario: Jika kita menjadi karakter pahlawan super, kekuatan apa yang kita miliki secara tim?",
+                    "Ceritakan hal paling berkesan dari cara kita saling memaafkan setelah pertengkaran hebat.",
+                    "Diskusi: Bagaimana caramu menilai apakah suatu kenangan masa lalu layak untuk diabadikan?",
+                    "Ceritakan kenangan saat kita nekat menerobos hujan badai demi menepati janji untuk bertemu.",
+                    "Ceritakan hal paling lucu saat kita mencoba menirukan gaya bicara guru killer di sekolah.",
+                    "Skenario: Jika kita mendadak menjadi pengusaha sukses, kantor impian seperti apa yang kita bangun?",
+                    "Ceritakan hal paling menarik dari cara kita saling memahami hanya dari tatapan mata.",
+                    "Diskusi: Bagaimana caramu menyikapi salah satu dari kita mendapatkan rezeki atau kesuksesan besar?",
+                    "Ceritakan kenangan manis saat kita menghabiskan akhir pekan di desa atau tempat sepi.",
+                    "Ceritakan momen paling berharga di mana aku menyelamatkanmu dari situasi yang memalukan.",
+                    "Skenario: Jika kita bisa memiliki satu keajaiban dongeng, keajaiban apa yang ingin kita coba?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan saat sedang merasa bosan di kelas.",
+                    "Diskusi: Bagaimana caramu menunjukkan rasa bangga atas pencapaian terbesarku sejauh ini?",
+                    "Ceritakan kenangan saat kita pertama kali belajar fotografi atau merekam video konyol bersama.",
+                    "Ceritakan hal paling berkesan dari nasihat bijak yang pernah aku berikan di saat genting.",
+                    "Skenario: Jika kita harus membuat peraturan mutlak dalam persahabatan kita, apa aturannya?",
+                    "Ceritakan hal paling lucu saat kita salah mengenakan seragam atau atribut di hari penting.",
+                    "Diskusi: Bagaimana caramu menjaga agar rahasia kecil di antara kita tetap aman selamanya?",
+                    "Ceritakan kenangan manis saat kita menikmati hidangan penutup favorit setelah penat beraktivitas.",
+                    "Ceritakan momen paling berharga di mana kita saling menguatkan di ruang tunggu rumah sakit.",
+                    "Skenario: Jika kita bisa menuliskan satu pesan abadi di dinding waktu, kalimat apa yang kita tulis?",
+                    "Ceritakan hal paling konyol yang pernah kita lakukan hanya untuk membuktikan siapa yang benar?",
+                    "Diskusi: Bagaimana caramu merayakan hari di mana persahabatan kita resmi terjalin kuat?",
+                    "Ceritakan kenangan manis saat kita saling bertukar cerita mimpi besar di bawah langit malam.",
+                    "Ceritakan momen paling emosional yang membuatmu sadar bahwa aku adalah sahabat terbaikmu?",
+                    "Refleksi: Apa pesan ketulusan abadi yang ingin kamu sampaikan untuk persahabatan kita hingga masa tua nanti?",
+                    "Ceritakan momen paling kocak saat kita salah memasuki ruangan atau kelas di masa lalu.",
+                    "Skenario: Jika kita harus membuka pameran barang antik persahabatan, barang apa yang paling unik?",
+                    "Diskusi: Bagaimana caramu menjaga agar ego pribadi tidak merusak kebersamaan kita?",
+                    "Ceritakan kenangan saat kita nekat begadang demi menyelesaikan tugas kelompok di detik-detik akhir.",
+                    "Skenario: Jika kita bisa mengulang satu hari liburan seru kita di masa lalu, hari apa itu?",
+                    "Ceritakan hal paling mengesankan dari cara keluargamu menyambut kehadiranku di rumahmu.",
+                    "Diskusi: Apa arti sebuah tempat pelarian rahasia yang hanya diketahui oleh kita berdua?",
+                    "Ceritakan momen ketika kamu merasa sangat bangga melihatku berhasil keluar dari masalah besar.",
+                    "Skenario: Jika kita mendadak harus membuat band musik akustik, apa nama band kita?",
+                    "Diskusi: Bagaimana cara kita merayakan ulang tahun persahabatan dengan cara yang paling berkesan?",
+                    "Ceritakan kenangan saat kita pertama kali mencoba hal ekstrem yang memacu adrenalin bersama.",
+                    "Ceritakan hal paling lucu saat kita salah membaca peta atau petunjuk arah jalan kaki.",
+                    "Skenario: Jika kita harus tinggal di rumah kaca di tengah hutan, kegiatan apa yang paling seru?",
+                    "Diskusi: Apa arti sebuah pelukan persahabatan di tengah hari yang sedang terasa sangat berat?",
+                    "Ceritakan momen ketika kamu merasa sangat bersyukur memiliki sahabat yang bisa dipercaya.",
+                    "Skenario: Jika kita bisa menuliskan buku memoar petualangan kita, apa judul bab pertamanya?",
+                    "Diskusi: Bagaimana cara kita menyikapi perbedaan jalan hidup yang kita ambil saat dewasa?",
+                    "Ceritakan kenangan manis saat kita menikmati jajanan sederhana usai pulang sekolah sore hari.",
+                    "Ceritakan momen ketika kamu merasa sangat beruntung karena pertemanan kita tetap utuh.",
+                    "Refleksi Akhir: Apa kalimat penyemangat terbaik yang ingin kamu berikan untuk persahabatan kita?"
+                ],
+                tantangan: [
+                    "Peragakan gaya berjalan model papan atas di atas catwalk imajiner sambil membawa tas belanja.",
+                    "Berbicaralah menggunakan logat bahasa daerah lain selama 2 putaran permainan ke depan!",
+                    "Tantang lawan bicaramu adu panco mini menggunakan tangan kiri selama 15 detik!",
+                    "Gambarkan wajah lawan bicaramu di udara menggunakan jari telunjuk tanpa suara selama 30 detik.",
+                    "Tirukan suara tawa paling menyebalkan dari penjahat di dalam film kartun terkenal.",
+                    "Berikan pijatan di pundak orang di sebelahmu selama 45 detik sambil menyanyikan lagu anak-anak.",
+                    "Lakukan tatap mata (*staring contest*) dengan lawan bicaramu; yang berkedip duluan harus dicolek hidungnya.",
+                    "Buatlah pantun jenaka spontan dalam 10 detik yang memuji keunikan wajah lawan bicaramu.",
+                    "Peragakan ekspresi wajah orang yang sedang kepedasan tingkat dewa tanpa bersuara sama sekali.",
+                    "Kirimkan emoji paling random di 5 chat terakhir handphonemu kepada orang acak (atau simulasikan).",
+                    "Berdirilah dengan satu kaki sambil melipat tangan di dada selama 30 detik penuh tanpa jatuh.",
+                    "Ucapkan kalimat \"Aku suka kamu karena kamu unik\" menggunakan 5 nada suara yang berbeda.",
+                    "Pijat hidungmu sendiri dan bicaralah tanpa melibatkan huruf 'A' selama satu menit penuh!",
+                    "Ambil pose foto pahlawan super (*superhero landing*) paling dramatis di lantai ruangan saat ini.",
+                    "Tebak tiga benda di sekitar ruangan hanya dengan merabanya dalam keadaan mata tertutup kain.",
+                    "Buatlah tiruan suara kucing atau anjing kelaparan yang sedang merengek minta makan.",
+                    "Aktinglah menjadi komentator sepak bola yang sedang histeris karena tim jagoannya kebobolan gol.",
+                    "Berikan pujian tulus menggunakan gestur tubuh ala bangsawan kerajaan Inggris abad pertengahan.",
+                    "Lakukan tos tangan dengan gaya paling rumit dan kreatif ciptaan kalian berdua dalam waktu 10 detik.",
+                    "Rangkai tiga kata acak dari lawan bicaramu menjadi sebuah kalimat gombalan instan yang paling absurd.",
+                    "Berdirilah tegak lalu tirukan suara burung hantu memanggil di malam hari sebanyak tiga kali.",
+                    "Berikan tepuk tangan meriah dengan gaya paling heboh untuk setiap kalimat yang diucapkan lawan bicaramu.",
+                    "Pegang kedua telingamu menggunakan tangan menyilang dan berputarlah satu kali lingkaran penuh.",
+                    "Ceritakan sebuah lelucon garing dengan ekspresi paling serius tanpa boleh tertawa sedikit pun.",
+                    "Tirukan gaya berjalan seekor penguin yang sedang kebingungan mencari arah jalan pulang.",
+                    "Pijat lembut telapak tangan lawan bicaramu sambil membacakan ramalan masa depan palsu yang lucu.",
+                    "Buatlah suara alarm jam berdering kencang menggunakan mulutmu selama 15 detik.",
+                    "Berdirilah dengan gaya membungkuk ala pelayan restoran mewah sambil menawarkan segelas air imajiner.",
+                    "Ucapkan puji-pujian setinggi langit untuk sebuah benda mati yang ada di dekatmu saat ini.",
+                    "Lakukan gerakan senam lantai pemanasan leher yang paling kaku dan lucu selama 20 detik.",
+                    "Tirukan bunyi ketukan pintu rumah misterius menggunakan meja atau lantai di dekatmu.",
+                    "Tutup sebelah matamu dan berkedip-kediplah secara bergantian selama 20 detik penuh tanpa henti.",
+                    "Berbicaralah dengan nada berbisik seperti mata-mata rahasia yang sedang menyampaikan misi penting.",
+                    "Buatlah bentuk hati (*love sign*) menggunakan kedua tanganmu dan arahkan tepat ke dahi lawan bicaramu.",
+                    "Tirukan gaya orang yang sedang kedinginan di puncak gunung salju bersalju lebat.",
+                    "Pura-puralah menjadi patung pahlawan dengan pose paling kaku selama 30 detik tanpa boleh bergerak.",
+                    "Berikan satu pujian absurd mengenai gaya rambut atau pakaian lawan bicaramu saat ini.",
+                    "Tirukan suara mesin motor balap (*GP*) yang sedang menggeber gasnya di garis start.",
+                    "Lipat kedua tanganmu di dada dan pasang wajah cemberut paling dramatis selama 15 detik.",
+                    "Berbicaralah dengan tempo sangat lambat ala rekaman kaset rusak selama satu putaran penuh.",
+                    "Tirukan gaya orang yang sedang kepanasan di tengah padang pasir terik tanpa air.",
+                    "Buatlah ekspresi wajah terkejut paling berlebihan seolah kamu melihat hantu di siang bolong.",
+                    "Berikan tepuk tangan satu kali dengan sangat keras secara tiba-tiba untuk mengejutkan lawan bicaramu.",
+                    "Tirukan bunyi detak jam dinding *'tik-tok'* menggunakan suara mulutmu selama 20 detik.",
+                    "Pura-puralah menjadi seorang penasihat kerajaan bijak yang sedang memberikan titah penting.",
+                    "Tunjuk hidung lawan bicaramu dan katakan \"Kamu adalah pemenang hari ini!\" dengan nada penuh semangat.",
+                    "Tirukan gaya orang yang sedang mengantuk berat di dalam rapat penting kantor.",
+                    "Buatlah gerakan tangan seperti dirigen orkestra musik klasik selama 15 detik.",
+                    "Berbicaralah menggunakan nada suara robot masa depan yang rusak sistem suaranya.",
+                    "Tirukan bunyi nada dering telepon genggam jadul (*ringtone*) menggunakan mulutmu.",
+                    "Pura-puralah menjadi seorang detektif swasta yang sedang mengamati jejak kaki misterius.",
+                    "Berikan kedipan mata genit ala aktor film koboi kepada lawan bicaramu.",
+                    "Tirukan gaya orang yang sedang meniup balon raksasa hingga hampir meledak.",
+                    "Buatlah gerakan peregangan badan (*stretching*) paling lucu yang bisa kamu lakukan.",
+                    "Berbicaralah dengan nada mendesah lelah seperti orang yang baru naik tangga lantai sepuluh.",
+                    "Tirukan suara ketukan hujan rintik-rintik di atas seng menggunakan jari-jarimu di meja.",
+                    "Pura-puralah menjadi seorang koki selebriti yang sedang menjelaskan resep masakan rahasia.",
+                    "Sentuh ujung hidungmu menggunakan jari telunjuk tangan kiri secara bergantian dengan cepat.",
+                    "Tirukan gaya orang yang sedang menaiki eskalator yang tiba-tiba berhenti bergerak.",
+                    "Buatlah ekspresi wajah sedih merana ala aktor drama Korea yang ditinggal kekasih.",
+                    "Berbicaralah dengan gaya penyiar berita radio pagi hari yang sangat energetik.",
+                    "Tirukan bunyi klakson bus malam antar kota antar provinsi (*AKAP*).",
+                    "Pura-puralah menjadi seorang turis asing yang kebingungan mencari letak toilet umum.",
+                    "Berikan hormat ala militer kepada lawan bicaramu sambil meneriakkan kata \"Siap, Komandan!\".",
+                    "Tirukan gaya orang yang sedang berjalan di atas tali tambang tipis di ketinggian ekstrem.",
+                    "Buatlah gerakan seolah kamu sedang menelan makanan raksasa yang sangat alot.",
+                    "Berbicaralah dengan nada suara serak basah ala penyanyi рок legendaris.",
+                    "Tirukan bunyi suling bambu tradisional menggunakan suara mulutmu.",
+                    "Pura-puralah menjadi seorang pesulap amatir yang sedang mengeluarkan kelinci tiruan dari saku.",
+                    "Sentuh kedua bahu lawan bicaramu dan katakan \"Semangat pejuang rupiah!\" dengan penuh penjiwaan.",
+                    "Tirukan gaya orang yang sedang berusaha membuka botol selai yang tutupnya sangat keras.",
+                    "Buatlah ekspresi wajah geli seolah kamu baru saja melihat sesuatu yang sangat lucu.",
+                    "Berbicaralah dengan gaya orang yang sedang melakukan siaran langsung (*live streaming*) jualan online.",
+                    "Tirukan bunyi ombak laut yang menghantam karang pantai berbatu.",
+                    "Pura-puralah menjadi seorang kapten kapal bajak laut yang sedang meneropong pulau harta karun.",
+                    "Berikan gestur menunjuk ke arah langit dan ucapkan \"Lihat, ada UFO!\" secara tiba-tiba.",
+                    "Tirukan gaya orang yang sedang menahan bersin di tengah ruangan yang sunyi senyap.",
+                    "Buatlah gerakan tangan berputar-putar ala penari balet profesional selama 10 detik.",
+                    "Berbicaralah dengan nada suara anak kecil berumur lima tahun yang sedang merajuk.",
+                    "Tirukan bunyi sirene mobil pemadam kebakaran yang sedang melaju kencang di jalan raya.",
+                    "Pura-puralah menjadi seorang penjaga gerbang benteng kuno yang sedang menanyai sandi rahasia.",
+                    "Berikan tepuk tangan lambat (*slow clap*) dengan wajah datar penuh apresiasi sarkas.",
+                    "Tirukan gaya orang yang sedang berusaha melepas jaket kulit yang kesempitan.",
+                    "Buatlah ekspresi wajah kagum luar biasa seolah kamu melihat keajaiban dunia.",
+                    "Berbicaralah dengan gaya seorang filosof bijak dari masa Yunani kuno.",
+                    "Tirukan bunyi gesekan biola fals yang dimainkan oleh pemula.",
+                    "Pura-puralah menjadi seorang agen rahasia yang sedang melapor lewat alat komunikasi rahasia.",
+                    "Letakkan kedua tangan di pinggang dan pasang wajah ngambek ala anak kecil tidak dibelikan permen.",
+                    "Tirukan gaya orang yang sedang meniup kopi panas di dalam cangkir kecil.",
+                    "Buatlah gerakan seolah kamu sedang mengangkat barbel raksasa seberat satu ton.",
+                    "Berbicaralah dengan gaya seorang sales asuransi yang sedang menawarkan produk penting.",
+                    "Tirukan bunyi lonceng gereja atau kuil tua di pagi hari.",
+                    "Pura-puralah menjadi seorang astronot yang sedang berjalan di permukaan bulan tanpa gravitasi.",
+                    "Berikan sentuhan lembut di pundak lawan bicaramu sambil tersenyum misterius.",
+                    "Tirukan gaya orang yang sedang memotret menggunakan kamera analog jadul berputar fokus.",
+                    "Buatlah ekspresi wajah bingung total ala orang yang salah turun di halte bus.",
+                    "Berbicaralah dengan gaya seorang instruktur yoga yang menenangkan pikiran.",
+                    "Tirukan bunyi cicit anak ayam yang baru menetas dari cangkangnya.",
+                    "Pura-puralah menjadi seorang narator film dokumenter alam liar yang sedang berbisik.",
+                    "Lakukan pose menguap paling lebar dan menular kepada lawan bicaramu saat ini juga.",
+                    "Tirukan gaya orang yang sedang mencoba menangkap lari seekor lalat pengganggu di udara.",
+                    "Buatlah gerakan seolah kamu sedang menyetir mobil sport dengan transmisi manual berkecepatan tinggi.",
+                    "Berbicaralah dengan nada suara orang yang sedang mengalami hidung tersumbat karena flu berat.",
+                    "Tirukan bunyi petir menggelegar di langit malam yang gelap gulita.",
+                    "Pura-puralah menjadi seorang arkeolog yang baru saja menemukan artefak emas kuno.",
+                    "Berikan tatapan mata paling dramatis ala bintang sinetron papan atas selama 10 detik.",
+                    "Tirukan gaya orang yang sedang menginjak genangan air lumpur secara tidak sengaja.",
+                    "Buatlah ekspresi wajah terkejut lucu sambil menutup mulut menggunakan kedua tanganmu.",
+                    "Berbicaralah dengan gaya seorang komentator mode busana karpet merah.",
+                    "Tirukan bunyi tetesan air keran kamar mandi yang rusak (*bocor*).",
+                    "Pura-puralah menjadi seorang koki sushi profesional yang sedang memotong ikan segar dengan pisau tajam.",
+                    "Angkat kedua tanganmu ke udara dan lakukan gerakan melambai ala ratu kecantikan di atas kereta kencana.",
+                    "Tirukan gaya orang yang sedang membersihkan kacamata berembun menggunakan ujung baju.",
+                    "Buatlah gerakan seolah kamu sedang meniup lilin ulang tahun raksasa berangka seratus.",
+                    "Berbicaralah dengan gaya seorang pengacara sidang pengadilan yang sedang berargumen kuat.",
+                    "Tirukan bunyi gergaji kayu manual yang sedang memotong batang pohon besar.",
+                    "Pura-puralah menjadi seorang penemu jenius yang laboratoriumnya baru saja meledak karena eksperimen.",
+                    "Berikan gerakan menunjuk ke arah cermin imajiner sambil berkata \"Kamu hebat!\" pada diri sendiri.",
+                    "Tirukan gaya orang yang sedang memakai kaus kaki basah di pagi hari yang dingin.",
+                    "Buatlah ekspresi wajah geli campur jijik melihat sesuatu yang aneh.",
+                    "Berbicaralah dengan gaya seorang pemandu wisata museum sejarah purbakala.",
+                    "Tirukan bunyi kepakan sayap burung merpati yang terbang mendadak kaget.",
+                    "Pura-puralah menjadi seorang maestro pelukis surealis yang sedang menatap kanvas kosong.",
+                    "Letakkan tangan di jidat ala orang pusing tujuh keliling menghadapi masalah pelik.",
+                    "Tirukan gaya orang yang sedang mengunyah permen karet balon super besar.",
+                    "Buatlah gerakan seolah kamu sedang menarik tali tambang tarik tambang lomba tujuh belasan.",
+                    "Berbicaralah dengan gaya seorang kapten kapal pesiar mewah yang sedang menyambut penumpang.",
+                    "Tirukan bunyi decitan pintu kamar tua yang tidak pernah diberi pelumas minyak.",
+                    "Pura-puralah menjadi seorang peramal masa depan yang sedang membaca garis tangan lawan bicaramu.",
+                    "Berikan kedipan mata genit dua kali secara cepat ke arah jendela ruangan.",
+                    "Tirukan gaya orang yang sedang berusaha membaca tulisan sangat kecil tanpa kacamata baca.",
+                    "Buatlah ekspresi wajah takjub gembira seolah baru saja memenangi undian mobil mewah.",
+                    "Berbicaralah dengan gaya seorang wasit pertandingan tinju dunia saat menghitung petinju knock out.",
+                    "Tirukan bunyi sengatan lebah madu yang terbang mendekati telinga.",
+                    "Pura-puralah menjadi seorang sutradara teater galak yang sedang memarahi aktor pemula.",
+                    "Berikan gerakan membungkuk hormat ala pelayan istana kerajaan Jepang kuno.",
+                    "Tirukan gaya orang yang sedang kedinginan di dalam ruangan ber-AC terlalu dingin.",
+                    "Buatlah gerakan seolah kamu sedang memegang cangkir teh porselen rapuh bermotif bunga.",
+                    "Berbicaralah dengan gaya seorang instruktur senam aerobik pagi hari yang bersemangat 45.",
+                    "Tirukan bunyi knalpot motor *racing* *brong* yang lewat di depan rumah.",
+                    "Pura-puralah menjadi seorang detektif kebun binatang yang sedang melacak jejak panda hilang.",
+                    "Tepuk pundak lawan bicaramu tiga kali perlahan sambil berkata \"Sabar ya, ini ujian\".",
+                    "Tirukan gaya orang yang sedang menggaruk punggungnya yang gatal tapi tidak sampai tangannya.",
+                    "Buatlah ekspresi wajah pasrah total ala orang yang tertinggal kereta terakhir malam hari.",
+                    "Berbicaralah dengan gaya seorang penyiar berita cuaca ekstrem televisi swasta.",
+                    "Tirukan bunyi tiupan angin badai topan yang menderu kencang di luar jendela.",
+                    "Pura-puralah menjadi seorang bangsawan kaya raya yang sedang memamerkan koleksi permata langka.",
+                    "Buatlah gestur tangan membentuk bingkai foto di depan wajah lawan bicaramu.",
+                    "Tirukan gaya orang yang sedang mencoba memasak dengan resep paling ngawur di dunia.",
+                    "Buatlah gerakan seolah kamu sedang mendayung perahu sampan di sungai berarus deras.",
+                    "Berbicaralah dengan gaya seorang master bela diri kungfu yang sedang mengajarkan jurus rahasia.",
+                    "Tirukan bunyi kepakan sayap lebah raksasa atau helikopter mainan remote control.",
+                    "Pura-puralah menjadi seorang penjaga toko barang antik misterius yang angker.",
+                    "Berikan senyuman paling lebar dan berlebihan layaknya maskot badut toko mainan.",
+                    "Tirukan gaya orang yang sedang berjalan membawa tumpukan piring kaca pecah yang licin.",
+                    "Buatlah ekspresi wajah serius tegang ala pemain catur profesional di turnamen dunia.",
+                    "Berbicaralah dengan gaya seorang pangeran kerajaan dongeng yang sedang melamar putri raja.",
+                    "Tirukan bunyi gesekan kapur tulis di papan tulis hitam yang membuat ngilu telinga.",
+                    "Pura-puralah menjadi seorang kapten pesawat tempur udara yang sedang menghindari peluru kendali.",
+                    "Ketuk meja tiga kali dengan ritme lagu populer lalu minta lawan bicaramu menebaknya.",
+                    "Tirukan gaya orang yang sedang makan mi instan panas berkuah pedas menantang lidah.",
+                    "Buatlah gerakan seolah kamu sedang memanjat dinding tebing terjal berbatu karang.",
+                    "Berbicaralah dengan gaya seorang pelelang barang seni antik balai lelang internasional.",
+                    "Tirukan bunyi letupan kembang api di udara malam tahun baru yang meriah.",
+                    "Pura-puralah menjadi seorang penjelajah gua bawah tanah yang membawa senter redup.",
+                    "Berikan gerakan menepuk dahi sendiri (*facepalm*) atas aksi konyol yang baru dibayangkan.",
+                    "Tirukan gaya orang yang sedang berusaha membuka amplop surat rahasia penting tanpa merusaknya.",
+                    "Buatlah ekspresi wajah kagum bercampur heran melihat trik sulap sederhana.",
+                    "Berbicaralah dengan gaya seorang kakek tua bijak yang sedang menceritakan legenda masa lampau.",
+                    "Tirukan bunyi letupan gelembung sabun mandi cair saat ditiup anak kecil.",
+                    "Pura-puralah menjadi seorang perancang busana papan atas yang sedang menilai model di *runway*.",
+                    "Buatlah simbol bintang (*star sign*) di udara menggunakan kedua jari telunjukmu secara cepat.",
+                    "Tirukan gaya orang yang sedang bersembunyi di balik semak-semak menghindari kejaran seseorang.",
+                    "Buatlah gerakan seolah kamu sedang melempar bola basket ke dalam ring dari jarak jauh.",
+                    "Berbicaralah dengan gaya seorang penyelam laut dalam yang sedang berbicara lewat alat selam.",
+                    "Tirukan bunyi decitan sepatu basket baru di lantai lapangan *indoor* yang licin.",
+                    "Pura-puralah menjadi seorang ilmuwan gila yang menemukan formula ramuan pengubah warna rambut.",
+                    "Letakkan tangan di dada kiri lalu ucapkan sumpah setia kawan dengan suara bergetar dramatis.",
+                    "Tirukan gaya orang yang sedang berusaha membaca rambu jalan di tengah malam gulita tanpa lampu.",
+                    "Buatlah ekspresi wajah super malas (*sloth*) seolah dunia berjalan sangat lambat bagimu.",
+                    "Berbicaralah dengan gaya seorang komentator balap kuda profesional di arena pacuan.",
+                    "Tirukan bunyi derap langkah kuda yang berlari kencang di atas tanah berumput.",
+                    "Pura-puralah menjadi seorang detektif kuliner yang sedang mencicipi makanan berbahan rahasia.",
+                    "Berikan tepuk tangan dua kali lalu petik jari tanganmu dengan irama yang pas.",
+                    "Tirukan gaya orang yang sedang berusaha menghindar dari sengatan gerombolan lebah pemarah.",
+                    "Buatlah gerakan seolah kamu sedang mengayuh sepeda tua menanjak bukit yang curam.",
+                    "Berbicaralah dengan gaya seorang kepala pelayan istana kerajaan Inggris yang sangat disiplin.",
+                    "Tirukan bunyi letupan balon karet yang pecah secara tiba-tiba di dekat telinga.",
+                    "Pura-puralah menjadi seorang fotografer alam liar yang sedang membidik foto singa lapar.",
+                    "Sentuh ujung jari telunjuk lawan bicaramu menggunakan jari telunjukmu selama 3 detik sambil tersenyum.",
+                    "Tirukan gaya orang yang sedang berusaha tidur di kursi bus malam ekonomi yang sempit.",
+                    "Buatlah ekspresi wajah kaget lucu sambil memegang kedua pipi menggunakan telapak tangan.",
+                    "Berbicaralah dengan gaya seorang kapten kapal selam nuklir yang sedang memberi perintah siaga.",
+                    "Tirukan bunyi kepakan sayap burung elang yang terbang menukik tajam ke bawah.",
+                    "Pura-puralah menjadi seorang pedagang pasar malam yang sedang berteriak menawarkan barang dagangan.",
+                    "Berikan gestur membungkuk kecil tanda terima kasih ala aktor teater usai pementasan selesai.",
+                    "Tirukan gaya orang yang sedang berusaha mengeluarkan benda asing dari dalam sepatu botnya.",
+                    "Buatlah gerakan seolah kamu sedang mengangkat piala kemenangan juara dunia ke udara tinggi-high.",
+                    "Berbicaralah dengan gaya seorang motivator ulung yang sedang membakar semangat audiens stadion.",
+                    "Tantangan Penutup: Berikan pelukan hangat atau tos persahabatan penutup yang paling bersemangat kepada lawan mainmu hari ini!"
+                ],
+            love_languages: [
+                    "Bagaimana bentuk tindakan nyata paling spesifik yang membuatmu merasa benar-benar dicintai?",
+                    "Apa 'silent expectation' (harapan diam-diam) yang sering kamu pendam dan berharap aku peka terhadapnya?",
+                    "Kapan terakhir kali kamu merasa bahasa cintamu tidak dipahami oleh orang di sekitarmu?",
+                    "Bagaimana cara kita menyesuaikan perbedaan love language di antara kita sehari-hari?",
+                    "Ungkapkan satu hal kecil yang aku lakukan yang membuat hatimu merasa hangat."
+                ],
+                unspoken_rules: [
+                    "Apa aturan tidak tertulis dalam persahabatan yang pantang untuk dilanggar menurutmu?",
+                    "Bagaimana cara menyikapi teman yang mulai berubah ketika mereka sudah memiliki pasangan?",
+                    "Sejauh mana batas toleransi rahasia yang boleh dibagikan ke sahabat dekat?",
+                    "Apa hal paling sulit yang pernah kamu maafkan dari seorang sahabat?",
+                    "Bagaimana cara menjaga hubungan persahabatan tetap sehat di tengah kesibukan dewasa?"
+                ],
+                habits_quirks: [
+                    "Apa kebiasaan aneh atau unik yang selalu kamu lakukan saat sedang sendiri di kamar?",
+                    "Sebutkan satu 'guilty pleasure' makanan atau tontonan yang diam-diam sangat kamu sukai.",
+                    "Kebiasaan kecil apa dariku yang diam-diam paling kamu perhatikan?",
+                    "Apa hal remeh yang bisa langsung merusak mood-mu seharian?",
+                    "Ceritakan kebiasaan masa kecil yang terbawa sampai kamu dewasa."
+                ],
+                local_wisdom: [
+                    "Pesan leluhur atau nasihat lokal apa yang paling membekas dalam pola pikirmu?",
+                    "Budaya atau kebiasaan daerah mana di Indonesia yang paling ingin kamu pelajari?",
+                    "Apa 'culture shock' terbesar yang pernah kamu alami saat merantau atau berkunjung ke tempat baru?",
+                    "Bagaimana cara melestarikan kearifan lokal di tengah arus modernisasi digital saat ini?",
+                    "Ceritakan pengalaman unikmu berinteraksi dengan masyarakat berlatar belakang budaya berbeda."
+                ],
+                healing: [
+                    "Luka masa kecil apa yang masih berusaha kamu berikan ruang untuk sembuh hingga hari ini?",
+                    "Apa kalimat yang paling ingin didengar oleh inner child (anak kecil dalam dirimu) saat ini?",
+                    "Bagaimana caramu memeluk diri sendiri ketika sedang menghadapi kegagalan berat?",
+                    "Siapa sosok yang paling berjasa membantumu melewati fase emosional tergelap?",
+                    "Apa arti kedamaian batin yang sesungguhnya bagimu saat ini?"
+                ],
+                what_if: [
+                    "What if... kita diberi kesempatan mengulang satu keputusan besar 5 tahun lalu, apa yang diubah?",
+                    "What if... teknologi internet mendadak lenyap selamanya dari bumi mulai besok pagi?",
+                    "What if... kamu bisa hidup di dalam semesta fiksi film favoritmu, dunia mana yang dipilih?",
+                    "What if... kita mendadak harus pindah ke desa terpencil tanpa listrik, bagaimana reaksi awalteramumu?",
+                    "What if... kamu diberi kekuatan untuk membaca satu rahasia alam semesta, apa yang ingin diketahui?"
+                ],
+                mindful_parenting: [
+                    "Nilai kehidupan terpenting apa yang ingin kamu wariskan kepada anak-anak kelak?",
+                    "Bagaimana cara mendidik anak agar memiliki ketangguhan mental tanpa harus merasa tertekan?",
+                    "Pola asuh masa lalu seperti apa dari orang tua yang tidak ingin kamu ulangi pada anak?",
+                    "Bagaimana cara menyeimbangkan ketegasan dan kasih sayang dalam mendidik anak?",
+                    "Apa ketakutan terbesarmu dalam menyiapkan masa depan generasi penerus?"
+                ],
+                quarter_life: [
+                    "Tekanan terbesar apa yang sedang kamu rasakan dalam menghadapi fase usia seperempat abad?",
+                    "Bagaimana cara kamu mengatasi rasa 'tertinggal' (*FOMO*) melihat pencapaian orang lain di media sosial?",
+                    "Definisi sukses seperti apa yang sebenarnya ingin kamu kejar, bukan demi standar orang lain?",
+                    "Apa ketakutan terbesar mengenai kestabilan karier dan finansialmu saat ini?",
+                    "Langkah kecil apa yang sudah kamu ambil untuk menemukan arah hidup yang lebih tenang?"
+                ],
+                red_flags: [
+                    "Apa 'red flag' (tanda bahaya) paling mutlak yang langsung membuatmu mundur dari sebuah hubungan?",
+                    "Menurutmu, apa perbedaan mendasar antara sifat posesif yang wajar dan manipulatif?",
+                    "Sebutkan 3 'green flag' (tanda positif) utama yang wajib ada pada calon pasangan hidup.",
+                    "Bagaimana caramu menghadapi seseorang yang awalnya tampak sempurna tapi perlahan berubah?",
+                    "Pelajaran apa yang dipetik dari hubungan masa lalu yang gagal?"
+                ],
+                first_impressions: [
+                    "Apa kesan pertamamu saat pertama kali melihat atau berkenalan denganku dulu?",
+                    "Seberapa sering asumsi awalmu meleset ketika mengenal kepribadian asli seseorang?",
+                    "Bagaimana cara orang lain biasanya salah menilai karakter aslimu di pertemuan pertama?",
+                    "Ceritakan momen ketika penampilan luar seseorang sangat bertolak belakang dengan sifat aslinya.",
+                    "Apa hal pertama yang biasanya kamu perhatikan dari gestur tubuh seseorang saat baru kenal?"
+                ]
+            };
+
+        let activeCategory = null;
+            let currentDeck = [];
+            let currentIndex = 0;
+            let savedMemories = [];
+
+            function shuffleArray(array) {
+                let arr = [...array];
+                for (let i = arr.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+                return arr;
+            }
+
+            function selectCategory(category) {
+                activeCategory = category;
+                currentDeck = shuffleArray(allDecks[category] || allDecks.pasangan);
+                currentIndex = 0;
+                document.getElementById('category-selection').classList.add('hidden');
+                document.getElementById('card-container').classList.remove('hidden');
+                document.getElementById('current-category-badge').innerText = categoryTitles[category];
+                loadCardContent();
+            }
+
+            function backToCategories() {
+                activeCategory = null;
+                document.getElementById('card-container').classList.add('hidden');
+                document.getElementById('category-selection').classList.remove('hidden');
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            }
+
+            function drawCard() {
+                playSound('pop');
+                triggerHaptic(35);
+                currentIndex = (currentIndex + 1) % currentDeck.length;
+                loadCardContent();
+                const qEl = document.getElementById('card-question');
+                qEl.classList.remove('card-animate');
+                void qEl.offsetWidth;
+                qEl.classList.add('card-animate');
+            }
+
+            function prevCard() {
+                playSound('pop');
+                triggerHaptic(30);
+                currentIndex = (currentIndex - 1 + currentDeck.length) % currentDeck.length;
+                loadCardContent();
+                const qEl = document.getElementById('card-question');
+                qEl.classList.remove('card-animate');
+                void qEl.offsetWidth;
+                qEl.classList.add('card-animate');
+            }
+
+            function loadCardContent() {
+                document.getElementById('card-question').innerText = currentDeck[currentIndex];
+                document.getElementById('card-tag').innerText = "SAPA RASA " + activeCategory.toUpperCase();
+                document.getElementById('card-counter').innerText = `${currentIndex + 1}/${currentDeck.length}`;
+            }
+
+            function saveMemory() {
+                playSound('save');
+                triggerHaptic(50);
+                const currentQ = currentDeck[currentIndex];
+                if (savedMemories.includes(currentQ)) {
+                    alert('Kenangan ini sudah tersimpan di daftar!');
+                    return;
+                }
+                savedMemories.push(currentQ);
+                renderMemories();
+            }
+
+            function renderMemories() {
+                const listEl = document.getElementById('memory-list');
+                document.getElementById('memory-count').innerText = savedMemories.length;
+                if (savedMemories.length === 0) {
+                    listEl.innerHTML = `<div class="text-xs text-stone-500 italic text-center py-3">Belum ada kenangan yang disimpan.</div>`;
+                    return;
+                }
+                listEl.innerHTML = '';
+                savedMemories.forEach((mem, idx) => {
+                    listEl.innerHTML += `
+                        <div class="bg-[#1a1628] border border-indigo-950 p-2.5 rounded-xl text-xs text-stone-200 flex justify-between items-start gap-2 card-animate">
+                            <span class="leading-relaxed">✨ "${mem}"</span>
+                            <button type="button" data-index="${idx}" class="del-mem text-stone-400 hover:text-pink-400 font-bold px-1.5 py-0.5 rounded hover:bg-indigo-950 shrink-0 cursor-pointer transition">×</button>
+                        </div>
+                    `;
+                });
+            }
+
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const cat = this.getAttribute('data-category');
+                    if (!checkUserLoggedIn()) {
+                        pendingCategory = cat;
+                        authNotice.innerText = "Silakan masuk atau daftar akun terlebih dahulu untuk memainkan kategori ini.";
+                        authModal.classList.remove('hidden');
+                        return;
+                    }
+                    selectCategory(cat);
+                });
+            });
+
+            document.querySelectorAll('.cat-lock-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const cat = this.getAttribute('data-category');
+                    if (!checkUserLoggedIn()) {
+                        pendingCategory = null;
+                        authNotice.innerText = "Silakan masuk atau daftar akun terlebih dahulu untuk membuka paket eksklusif.";
+                        authModal.classList.remove('hidden');
+                        return;
+                    }
+                    const unlocked = currentUserData?.unlockedCategories || [];
+                    if (unlocked.includes(cat)) {
+                        selectCategory(cat);
+                        return;
+                    }
+                    const catName = categoryTitles[cat] || 'Kategori Eksklusif';
+                    document.getElementById('payment-target-title').innerText = catName;
+                    const userEmail = auth.currentUser ? auth.currentUser.email : 'unknown';
+                    const waMessage = encodeURIComponent(`Halo Admin SapaRasa, saya ingin mengaktifkan kategori eksklusif *${catName}*. Email akun saya: *${userEmail}*. Berikut saya lampirkan bukti pembayaran QRIS.`);
+                    document.getElementById('btn-whatsapp-checkout').setAttribute('href', `https://wa.me/62895367100605?text=${waMessage}`);
+                    paymentModal.classList.remove('hidden');
+                });
+            });
+
+            document.getElementById('btn-back').addEventListener('click', backToCategories);
+            document.getElementById('card-box').addEventListener('click', drawCard);
+            document.getElementById('btn-next').addEventListener('click', drawCard);
+            document.getElementById('btn-prev').addEventListener('click', prevCard);
+            document.getElementById('btn-save').addEventListener('click', (e) => { e.stopPropagation(); saveMemory(); });
+            document.getElementById('btn-guide').addEventListener('click', () => document.getElementById('guide-modal').classList.remove('hidden'));
+            document.getElementById('btn-close-guide').addEventListener('click', () => document.getElementById('guide-modal').classList.add('hidden'));
+            document.getElementById('btn-ok-guide').addEventListener('click', () => document.getElementById('guide-modal').classList.add('hidden'));
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    self.addEventListener('install', e => e.waitUntil(self.skipWaiting()));
+                    self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
+                    self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+                `;
+                const blob = new Blob([swCode], { type: 'text/javascript' });
+                navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+            });
+        }
+
+    </script>
+</body>
+</html>
